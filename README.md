@@ -9,7 +9,11 @@
 
 Wireframe: To access, Click [Link here]()
 
-Document: To access, Click [Link here](https://docs.google.com/document/d/17AAHQfqsdy0DkRjxTKTVVk0ij6p6-8CILsDvGjk0MGk/edit?usp=sharing)
+Document Planning: To access, Click [Link here](https://docs.google.com/document/d/17AAHQfqsdy0DkRjxTKTVVk0ij6p6-8CILsDvGjk0MGk/edit?usp=sharing)
+
+Video Walkthrough: To access, Click [Link here]()
+
+Github Page: To access, Click [Link here]()
 
 ## Features
 
