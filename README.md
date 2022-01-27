@@ -7,7 +7,7 @@
 
 ## Design Process
 
-Wireframe: To access, Click [Link here]()
+Wireframe: To access, Click [Link here](https://xd.adobe.com/view/4210eedb-dbe8-4bda-b298-08e33856292c-1743/)
 
 Document Planning: To access, Click [Link here](https://docs.google.com/document/d/17AAHQfqsdy0DkRjxTKTVVk0ij6p6-8CILsDvGjk0MGk/edit?usp=sharing)
 
@@ -32,6 +32,8 @@ Github Page: To access, Click [Link here]()
   - Javascript(JS) allows **interactivity** between HTML elements and can change CSS on elements with **functions / logics**
 - jQuery
   - jQuery is a **JavaScript Library**. Greatly **simplifies** JavaScript programming.
+- Boostrap
+  - Ease development of Front-end Design
 - Lottie Animations
   - Lottie Animations to make loading screen between query from website to server **less boring**
 
