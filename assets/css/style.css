@@ -11,6 +11,53 @@ a, a:hover {
 	text-decoration: none;
 }
 
+/* Header*/
+
+header {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 30px 100px;
+}
+
+header .logo {
+	position: relative;
+	padding-right: 30px;
+	color: #F8F9FA;
+	font-size: 2em;
+	font-weight: 700;
+}
+
+nav {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav ul {
+	position: relative;
+	display: flex;
+	margin: 0;
+	justify-content: center;
+	align-items: center;
+}
+
+nav ul li {
+	list-style: none;
+}
+
+nav ul li a {
+	position: relative;
+	margin-left: 30px;
+}
+
+.menuBurger {
+	display: none;
+}
+
 /* Background Video */
 
 .video-bg {
