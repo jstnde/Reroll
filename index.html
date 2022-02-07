@@ -8,27 +8,36 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+	<header>
 
-	Enter Summoner Name:<input type="text" name="sumName" id="sumName">
-	<select name="regionSel" id="regionSel">
-		<option value="BR1">BR1</option>
-        <option value="EUN1">EUN1</option>
-		<option value="EUW1">EUW1</option>
-		<option value="JP1">JP1</option>
-		<option value="KR">KR</option>
-		<option value="LA1">LA1</option>
-		<option value="LA2">LA2</option>
-		<option value="NA1">NA1</option>
-		<option value="OC1">OC1</option>
-		<option value="RU">RU</option>
-		<option value="TR1">TR1</option>	
-	</select>
-	<button type="submit" id="searchSum">Search</button>
-	<div id="error-username">
-		<div class="alert alert-success" role="alert">
-		  Invalid Username.
+	</header>
+	<main>
+		<label for="sumName">Enter Summoner Name:</label>
+		<input type="text" name="sumName" id="sumName">
+		<label for="regionSel"></label>
+		<select name="regionSel" id="regionSel">
+			<option value="BR1">BR1</option>
+			<option value="EUN1">EUN1</option>
+			<option value="EUW1">EUW1</option>
+			<option value="JP1">JP1</option>
+			<option value="KR">KR</option>
+			<option value="LA1">LA1</option>
+			<option value="LA2">LA2</option>
+			<option value="NA1">NA1</option>
+			<option value="OC1">OC1</option>
+			<option value="RU">RU</option>
+			<option value="TR1">TR1</option>
+		</select>
+		<button type="submit" id="searchSum">Search</button>
+		<div id="error-username">
+			<div class="alert alert-success" role="alert">
+				Invalid Username.
+			</div>
 		</div>
-	</div>
+	</main>
+	<footer>
+		//yet to decide what lies here :)
+	</footer>
 
 	<script src="assets/js/jquery-3.6.0.min.js"></script>
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
