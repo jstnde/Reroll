@@ -13,7 +13,7 @@ Document Planning: To access, Click [Link here](https://docs.google.com/document
 
 Video Walkthrough: To access, Click [Link here]()
 
-Github Page: To access, Click [Link here]()
+Github Page: To access, Click [Link here](https://jstnde.github.io/Reroll/)
 
 ## Features
 
