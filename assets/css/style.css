@@ -75,6 +75,33 @@ nav .navigation li a:hover:after {
 	width: 100%;
 }
 
+nav .action li a {
+	font-size: 1.25em;
+	transition: all 1s;
+}
+
+nav .action li a:after {
+	text-align: left;
+	content: "";
+	margin: 0;
+	opacity: 0;
+	bottom: -25%;
+	left: -25%;
+}
+
+nav .action li a:hover {
+	color: #F8F9FA;
+	z-index: 1;
+}
+
+nav .action li a:hover:after {
+	z-index: -1;
+	animation: fill 1s forwards;
+	-webkit-animation: fill 1s forwards;
+	-moz-animation: fill 1s forwards;
+	opacity: 1;
+}
+
 .menuBurger {
 	display: none;
 }
@@ -88,6 +115,25 @@ nav .navigation li a:hover:after {
 	z-index: -1;
 	width: 100%;
 	height: auto;
+}
+
+/* Keyframes */
+
+@-webkit-keyframes fill {
+	0% {
+		width: 0;
+		height: 1px;
+	}
+	50% {
+		width: 150%;
+		height: 1px;
+	}
+	100% {
+		width: 150%;
+		height: 150%;
+		background-color: rgba(46, 64, 82, .75);
+		border-radius: 3px;
+	}
 }
 
 /* Media Queries */
