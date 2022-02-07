@@ -8,3 +8,24 @@
 	width: 100%;
 	height: auto;
 }
+
+/* Media Queries */
+
+@media (min-aspect-ratio: 16/9) {
+	.video-bg {
+		width:100%;
+		height: auto;
+	}
+}
+
+@media (max-aspect-ratio: 16/9) {
+	.video-bg {
+		width:auto;
+		height: 100%;
+		top: -9999px;
+		bottom: -9999px;
+		left: -9999px;
+		right: -9999px;
+		margin: auto;
+	}
+}
