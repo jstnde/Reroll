@@ -10,29 +10,28 @@ $(document).ready(function () {
 
     function getSummoner(sumName, riot_api_url) {
 
-        let query_url = '/tft/summoner/v1/summoners/by-name/' 
+        let query_url = '/tft/summoner/v1/summoners/by-name/'
 
-        var settings = {
-            'cache': false,
-            'contentType': "application/json",
-            "async": true,
-            "crossDomain": true,
-            "url": riot_api_url + query_url + `${sumName}?` + reroll,
-            "method": "GET",
-        }
+		const settings = {
+			'cache': false,
+			'contentType': "application/json",
+			"async": true,
+			"crossDomain": true,
+			"url": riot_api_url + query_url + `${sumName}?` + reroll,
+			"method": "GET",
+		};
 
-        $.ajax(settings).done(function (response) {
+		$.ajax(settings).done(function(response) {
             const sumJSON = JSON.stringify(response);
 
             sessionStorage.setItem("summonerJSON", sumJSON);
-            $("#error-username").show();
 
             let getSumJSON = sessionStorage.getItem("summonerJSON")
-            let parseSumJSON = JSON.parse(getSumJSON);
-            console.log(parseSumJSON.puuid);
+			let parseSumJSON = JSON.parse(getSumJSON);
+			let region = $("#regionSel").val();
+			console.log(parseSumJSON.puuid);
 
-            let region = $("#regionSel").val();
-            $("#error-username").html(parseSumJSON.name + " " + region);
+            $("#error-username").html(parseSumJSON.name + " " + region).show();
             queryGames(parseSumJSON.puuid, riot_api_url);
             
             for (let i = 0; i < matchList.length; i++) {
@@ -76,9 +75,8 @@ $(document).ready(function () {
                 content = `${content}<p>${element.summonerName}</p>`
             }
             $("#leaderboard tbody").html(content);
-        });
-
-        $.ajax(settings).fail(function() {
+        })
+			.fail(function() {
             $("#error-username").show().fadeOut(5000);
         });
     }
@@ -148,16 +146,16 @@ $(document).ready(function () {
                 break;
         }
 
-        var settings = {
-            'cache': false,
-            'contentType': "application/json",
-            "async": true,
-            "crossDomain": true,
-            "url": riot_api_url + query_url + reroll,
-            "method": "GET",
-        }
+		const settings = {
+			'cache': false,
+			'contentType': "application/json",
+			"async": true,
+			"crossDomain": true,
+			"url": riot_api_url + query_url + reroll,
+			"method": "GET",
+		};
 
-        $.ajax(settings).done(function (response) {
+		$.ajax(settings).done(function (response) {
             // query each match ID
             matchList = response;
             console.log(matchList);
@@ -310,4 +308,8 @@ $(document).ready(function () {
 
 
 
+	$(".menuBurger").click(function() {
+		$(".menuBurger").toggleClass("active");
+		$(".navigation").toggleClass("active");
+	});
 });
