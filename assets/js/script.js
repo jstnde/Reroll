@@ -306,8 +306,6 @@ $(document).ready(function () {
     
     });
 
-
-
 	$(".menuBurger").click(function() {
 		$(".menuBurger").toggleClass("active");
 		$(".navigation").toggleClass("active");
