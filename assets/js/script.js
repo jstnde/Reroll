@@ -1,5 +1,6 @@
 $(document).ready(function () {
 	$("#region-select").html($(".region-option.active").html());
+	$("#rank-select").html($(".rank-option.active").html());
 
 	const reroll = config.REROLL_API;
     let matchList = [];
@@ -57,11 +58,11 @@ $(document).ready(function () {
         window.location.href = "http://localhost:5500/summoner.html"
     }
 
-    function getLeaderboard(riot_api_url, limit = 10) {
+	function getLeaderboard(riot_api_url, rank, limit = 50) {
 
-        let query_url = '/tft/league/v1/grandmaster'
+		const query_url = `/tft/league/v1/${rank}`;
 
-        var settings = {
+        const settings = {
             'cache': false,
             'contentType': "application/json",
             "async": true,
@@ -97,8 +98,8 @@ $(document).ready(function () {
     
     function queryGames(puuid, riot_api_url){
 
-        let query_url = `/tft/match/v1/matches/by-puuid/${puuid}/ids?count=10&`;        
-        let region = $("#regionSel").val();
+        let query_url = `/tft/match/v1/matches/by-puuid/${puuid}/ids?count=10&`;
+		let region = $(".region-option.active").attr("data-code");
 
         switch (region) {
             case "NA1":
@@ -182,12 +183,12 @@ $(document).ready(function () {
 
     function eachGameInfo(matchId){
         let query_url = `/tft/match/v1/matches/${matchId}?`;
-        let region = $("#regionSel").val();
+		let region = $(".region-option.active").attr("data-code");
 
         switch (region) {
             case "NA1":
                 region = "americas";
-                riot_api_url = `https://${region}.api.riotgames.com`;
+				riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "BR1":
@@ -244,7 +245,7 @@ $(document).ready(function () {
                 break;
         }
 
-        var settings = {
+        const settings = {
             'cache': false,
             'contentType': "application/json",
             "async": true,
@@ -256,23 +257,24 @@ $(document).ready(function () {
         $.ajax(settings).done(function (response) {
             // query each match info
             console.log(response);
-            var storedProductList = JSON.parse(sessionStorage.getItem('gameInfo')) || [];
+            let storedProductList = JSON.parse(sessionStorage.getItem('gameInfo')) || [];
             storedProductList.push(response);
             sessionStorage.setItem('gameInfo', JSON.stringify(storedProductList));
             // Bring user to next page
         });
     }
 
-    // Onclick show leaderboard
+    // on submit show leaderboard
     $("#searchLB").on("click", function (e) {
-        e.preventDefault();
-        let region = $("#regionSel").val();
-        let riot_api_url = `https://${region}.api.riotgames.com`;
+		e.preventDefault();
+		const region = $(".region-option.active").attr("data-code");
+		const riot_api_url = `https://${region}.api.riotgames.com`;
+		const rank = $(".rank-option.active").attr("data-rank");
 
-        getLeaderboard(riot_api_url);
+		getLeaderboard(riot_api_url, rank);
     });
 
-    // On click show summoner
+    // on submit show summoner
     $(".searchbar").submit(function (e) {
         e.preventDefault();
         let sumName = $("#sumName").val();
@@ -292,5 +294,11 @@ $(document).ready(function () {
 		$(".region-option.active").removeClass("active");
 		$(this).addClass("active");
 		$("#region-select").html($(this).html());
+	});
+
+	$(".rank-option").click(function () {
+		$(".rank-option.active").removeClass("active");
+		$(this).addClass("active");
+		$("#rank-select").html($(this).html());
 	});
 });
