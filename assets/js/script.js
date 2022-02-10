@@ -31,7 +31,6 @@ $(document).ready(function () {
 			let region = $("#regionSel").val();
 			console.log(parseSumJSON.puuid);
 
-            $("#error-username").html(parseSumJSON.name + " " + region).show();
             queryGames(parseSumJSON.puuid, riot_api_url);
 
             for (let i = 0; i < matchList.length; i++) {
