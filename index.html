@@ -3,13 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Reroll</title>
-	<link rel="stylesheet" href="assets/css/normalize.css">
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link href="assets/css/normalize.css" rel="stylesheet">
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
 	<header>
-		<a href="#" class="logo">Reroll;</a>
+		<a class="logo" href="#">Reroll;</a>
 		<nav>
 			<ul class="navigation">
 				<li><a href="#">Home</a></li>
@@ -24,9 +24,9 @@
 	</header>
 	<main>
 		<label for="sumName">Enter Summoner Name:</label>
-		<input type="text" name="sumName" id="sumName">
+		<input id="sumName" name="sumName" type="text">
 		<label for="regionSel"></label>
-		<select name="regionSel" id="regionSel">
+		<select id="regionSel" name="regionSel">
 			<option value="BR1">BR1</option>
 			<option value="EUN1">EUN1</option>
 			<option value="EUW1">EUW1</option>
@@ -39,7 +39,7 @@
 			<option value="RU">RU</option>
 			<option value="TR1">TR1</option>
 		</select>
-		<button type="submit" id="searchSum">Search</button>
+		<button id="searchSum" type="submit">Search</button>
 		<div id="error-username">
 			<div class="alert alert-success" role="alert">
 				Invalid Username.
@@ -49,7 +49,7 @@
 	<footer>
 		//yet to decide what lies here :)
 	</footer>
-	<video class="video-bg" autoplay muted loop>
+	<video class="video-bg" autoplay muted loop poster="assets/imgs/bg-video.png">
 		<source src="assets/imgs/bg-video.webm" type="video/webm">
 	</video>
 	<script src="assets/js/jquery-3.6.0.min.js"></script>
