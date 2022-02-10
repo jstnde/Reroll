@@ -270,7 +270,7 @@ $(document).ready(function () {
 	});
 
     // on submit show leaderboard
-    $("#searchLB").on("click", function (e) {
+    $(".searchLB").on("click", function (e) {
 		e.preventDefault();
 		const region = $(".region-option.active").attr("data-code");
 		const riot_api_url = `https://${region}.api.riotgames.com`;
@@ -279,16 +279,16 @@ $(document).ready(function () {
 		getLeaderboard(riot_api_url, rank);
     });
 
-    // on submit show summoner
-    $(".searchbar").submit(function (e) {
-        e.preventDefault();
-        let sumName = $("#sumName").val();
-        let region = $(".region-option.active").attr("data-code");
-        let riot_api_url = `https://${region}.api.riotgames.com`;
+	// on submit show summoner
+	$(".searchSum").submit(function (e) {
+		e.preventDefault();
+		let sumName = $("#sumName").val();
+		let region = $(".region-option.active").attr("data-code");
+		let riot_api_url = `https://${region}.api.riotgames.com`;
 
-        getSummoner(sumName, riot_api_url);
-        $("#lottie").show();
-    });
+		getSummoner(sumName, riot_api_url);
+		$("#lottie").show();
+	});
 
 	$(".menuBurger").click(function() {
 		$(".menuBurger").toggleClass("active");

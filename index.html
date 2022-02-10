@@ -24,8 +24,8 @@
 		</nav>
 	</header>
 	<main>
-		<form class="input-group searchbar">
-			<div class="dropdown">
+		<form class="input-group searchbar searchSum">
+			<div class="dropdown dropdown-region">
 				<button class="btn btn-secondary dropdown-toggle" id="region-select" data-bs-toggle="dropdown" type="button"></button>
 				<div class="dropdown-menu">
 					<button class="dropdown-item region-option" data-code="BR1" type="button">BR</button>
@@ -43,7 +43,7 @@
 			</div>
 			<input class="form-control" id="sumName" type="text" placeholder="Search for summoner...">
 			<input type="submit" hidden>
-			<button class="btn" type="submit"><i class="fa fa-search"></i></button>
+			<button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
 			<div id="error-username">
 				<div class="alert alert-success" role="alert">
 					Invalid Username.
