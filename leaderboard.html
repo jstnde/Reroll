@@ -2,46 +2,96 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
-	<link rel="stylesheet" href="assets/css/normalize.css">
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/style.css">
+	<title>Reroll</title>
+	<link href="assets/css/normalize.css" rel="stylesheet">
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-	Select region for Grandmaster:
-	<select name="regionSel" id="regionSel">
-		<option value="BR1">BR1</option>
-		<option value="EUN1">EUN1</option>
-		<option value="EUW1">EUW1</option>
-		<option value="JP1">JP1</option>
-		<option value="KR">KR</option>
-		<option value="LA1">LA1</option>
-		<option value="LA2">LA2</option>
-		<option value="NA1">NA1</option>
-		<option value="OC1">OC1</option>
-		<option value="RU">RU</option>
-		<option value="TR1">TR1</option>
-	</select>
-	<button type="submit" id="searchLB">Search</button>
-	<div id="error-username">
-		<div class="alert alert-success" role="alert">
-			Invalid Username.
+	<header>
+		<a class="logo" href="#">Reroll;</a>
+		<nav>
+			<ul class="navigation">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Leaderboard</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+			<ul class="action">
+				<li><a href="#">Login</a></li>
+				<div class="menuBurger"></div>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<section>
+			<div class="d-flex justify-content-between">
+				<div class="d-flex flex-md-row flex-column">
+					<h1>Leaderboard</h1>
+					<button class="btn btn-close-white" data-bs-target="#filterModal" data-bs-toggle="modal" type="button">
+						Filter Leaderboard
+					</button>
+				</div>
+				<div class="d-flex align-items-end mb-1 flex-column justify-content-end" id="updateTime">
+					<p class="m-0">Last Update: </p><b></b>
+				</div>
+			</div>
+			<table class="table table-striped table-dark table-hover" id="leaderboard">
+				<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">League Points</th>
+					<th scope="col">Rank</th>
+					<th scope="col">Total Games</th>
+					<th scope="col">Win%</th>
+				</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</section>
+		<div class="modal fade" id="filterModal" role="dialog" aria-hidden="true" aria-labelledby="filterModalTitle" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form class="input-group searchbar searchLB">
+							<div class="dropdown dropdown-region">
+								<button class="btn btn-secondary dropdown-toggle" id="region-select" data-bs-toggle="dropdown" type="button"></button>
+								<div class="dropdown-menu">
+									<button class="dropdown-item region-option" data-code="BR1" type="button">BR</button>
+									<button class="dropdown-item region-option" data-code="EUN1" type="button">EUN</button>
+									<button class="dropdown-item region-option" data-code="EUW1" type="button">EUW</button>
+									<button class="dropdown-item region-option" data-code="JP1" type="button">JP</button>
+									<button class="dropdown-item region-option" data-code="KR" type="button">KR</button>
+									<button class="dropdown-item region-option" data-code="LA1" type="button">LAN</button>
+									<button class="dropdown-item region-option" data-code="LA2" type="button">LAS</button>
+									<button class="dropdown-item region-option active" data-code="NA1" type="button">NA</button>
+									<button class="dropdown-item region-option" data-code="OC1" type="button">OCE</button>
+									<button class="dropdown-item region-option" data-code="TR1" type="button">TR</button>
+									<button class="dropdown-item region-option" data-code="RU" type="button">RU</button>
+								</div>
+							</div>
+							<div class="dropdown dropdown-rank">
+								<button class="btn btn-secondary dropdown-toggle" id="rank-select" data-bs-toggle="dropdown" type="button"></button>
+								<div class="dropdown-menu">
+									<button class="dropdown-item rank-option" data-rank="challenger" type="button">Challenger</button>
+									<button class="dropdown-item rank-option active" data-rank="grandmaster" type="button">Grandmaster</button>
+									<button class="dropdown-item rank-option" data-rank="master" type="button">Master</button>
+								</div>
+							</div>
+							<button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	<table id="leaderboard">
-		<thead>
-			<th>Name</th>
-			<th>League Points</th>
-			<th>Rank</th>
-			<th>Total Games</th>
-			<th>Win%</th>
-		</thead>
-		<tbody></tbody>
-	</table>
-
-<script src="assets/js/jquery-3.6.0.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/config.js"></script>
-<script src="assets/js/script.js"></script>
+	</main>
+	<footer>
+		//yet to decide what lies here :)
+	</footer>
+	<script src="assets/js/jquery-3.6.0.min.js"></script>
+	<script src="assets/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/js/config.js"></script>
+	<script src="assets/js/script.js"></script>
 </body>
 </html>
