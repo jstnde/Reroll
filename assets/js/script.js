@@ -55,11 +55,11 @@ $(document).ready(function () {
     }
 
     function redirect(){
-        window.location.href = "http://localhost:5500/summoner.html"
+        window.location.href = "http://localhost:63342/summoner.html"
     }
 
 	function getLeaderboard(riot_api_url, rank, limit = 50) {
-
+		console.log("Loading leaderboard..");
 		const query_url = `/tft/league/v1/${rank}`;
 
         const settings = {
@@ -83,6 +83,7 @@ $(document).ready(function () {
                 percentWin = element.wins/totalGames * 100;
                 console.log(element.summonerId);
                 content = `${content}<tr id='${element.summonerId}'>
+                <td>${i + 1}</td>\t
                 <td>${element.summonerName}</td>\t
                 <td>${element.leaguePoints}</td>\t
                 <td>${element.rank}</td>\t
@@ -90,7 +91,9 @@ $(document).ready(function () {
                 <td>${percentWin.toFixed(2)}</td>`
             }
             $("#leaderboard tbody").html(content);
-        })
+			const d = new Date();
+			$("#updateTime b").html(`${d.getDate()}/${d.getMonth()}/${d.getFullYear()} ${d.getHours() > 12 ? d.getHours() - 12 : d.getHours()}:${d.getMinutes()} ${d.getHours() > 12 ? "pm" : "am"}`);
+		})
 			.fail(function() {
             $("#error-username").show().fadeOut(5000);
         });
@@ -269,15 +272,14 @@ $(document).ready(function () {
 		$(".searchLB").submit();
 	});
 
-    // on submit show leaderboard
-    $(".searchLB").on("click", function (e) {
+	// on submit show leaderboard
+	$(".searchLB").submit(function (e) {
 		e.preventDefault();
 		const region = $(".region-option.active").attr("data-code");
 		const riot_api_url = `https://${region}.api.riotgames.com`;
 		const rank = $(".rank-option.active").attr("data-rank");
-
 		getLeaderboard(riot_api_url, rank);
-    });
+	});
 
 	// on submit show summoner
 	$(".searchSum").submit(function (e) {
