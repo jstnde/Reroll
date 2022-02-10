@@ -1,6 +1,7 @@
 $(document).ready(function () {
+	$("#region-select").html($(".region-option.active").html());
 
-    let reroll = config.REROLL_API
+	const reroll = config.REROLL_API;
     $("#error-username").hide();
 
     function getSummoner(sumName, riot_api_url) {
@@ -111,5 +112,11 @@ $(document).ready(function () {
 	$(".menuBurger").click(function() {
 		$(".menuBurger").toggleClass("active");
 		$(".navigation").toggleClass("active");
+	});
+
+	$(".region-option").click(function () {
+		$(".region-option.active").removeClass("active");
+		$(this).addClass("active");
+		$("#region-select").html($(this).html());
 	});
 });

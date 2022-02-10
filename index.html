@@ -5,6 +5,7 @@
 	<title>Reroll</title>
 	<link href="assets/css/normalize.css" rel="stylesheet">
 	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -23,28 +24,27 @@
 		</nav>
 	</header>
 	<main>
-		<label for="sumName">Enter Summoner Name:</label>
-		<input id="sumName" name="sumName" type="text">
-		<label for="regionSel"></label>
-		<select id="regionSel" name="regionSel">
-			<option value="BR1">BR1</option>
-			<option value="EUN1">EUN1</option>
-			<option value="EUW1">EUW1</option>
-			<option value="JP1">JP1</option>
-			<option value="KR">KR</option>
-			<option value="LA1">LA1</option>
-			<option value="LA2">LA2</option>
-			<option value="NA1">NA1</option>
-			<option value="OC1">OC1</option>
-			<option value="RU">RU</option>
-			<option value="TR1">TR1</option>
-		</select>
-		<button id="searchSum" type="submit">Search</button>
-		<div id="error-username">
-			<div class="alert alert-success" role="alert">
-				Invalid Username.
+		<form class="input-group searchbar">
+			<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" id="region-select" data-bs-toggle="dropdown" type="button"></button>
+				<div class="dropdown-menu">
+					<button class="dropdown-item region-option" type="button">BR</button>
+					<button class="dropdown-item region-option" type="button">EUN</button>
+					<button class="dropdown-item region-option" type="button">EUW</button>
+					<button class="dropdown-item region-option" type="button">JP</button>
+					<button class="dropdown-item region-option" type="button">KR</button>
+					<button class="dropdown-item region-option" type="button">LAN</button>
+					<button class="dropdown-item region-option" type="button">LAS</button>
+					<button class="dropdown-item region-option active" type="button">NA</button>
+					<button class="dropdown-item region-option" type="button">OCE</button>
+					<button class="dropdown-item region-option" type="button">TR</button>
+					<button class="dropdown-item region-option" type="button">RU</button>
+				</div>
 			</div>
-		</div>
+			<input class="form-control" type="text" placeholder="Search for summoner...">
+			<input type="submit" hidden>
+			<button class="btn" type="submit"><i class="fa fa-search"></i></button>
+		</form>
 	</main>
 	<footer>
 		//yet to decide what lies here :)

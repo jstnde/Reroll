@@ -1,48 +1,48 @@
 * {
+	font-family: Roboto, sans-serif;
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
-	font-family: Roboto, sans-serif;
 	color: #F8F9FA;
 }
 
 a, a:hover {
-	color: #F8F9FA;
 	text-decoration: none;
+	color: #F8F9FA;
 }
 
 /* Header*/
 
 header {
 	position: relative;
-	width: 100%;
 	display: flex;
 	justify-content: space-between;
+	width: 100%;
 	padding: 30px 100px;
 }
 
 header .logo {
+	font-size: 2em;
+	font-weight: 700;
 	position: relative;
 	padding-right: 30px;
 	color: #F8F9FA;
-	font-size: 2em;
-	font-weight: 700;
 }
 
 nav {
 	position: relative;
-	width: 100%;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+	width: 100%;
 }
 
 nav ul {
 	position: relative;
 	display: flex;
-	margin: 0;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	margin: 0;
 }
 
 nav ul li {
@@ -60,15 +60,15 @@ nav ul li a, nav ul li a:after {
 
 nav ul li a:after {
 	position: absolute;
+	right: 0;
 	bottom: -5px;
 	left: 0;
-	right: 0;
-	height: 2px;
 	width: 0;
+	height: 2px;
 	margin: auto;
 	content: "";
-	background: #F8F9FA;
 	color: transparent;
+	background: #F8F9FA;
 }
 
 nav .navigation li a:hover:after {
@@ -81,24 +81,24 @@ nav .action li a {
 }
 
 nav .action li a:after {
-	text-align: left;
-	content: "";
-	margin: 0;
-	opacity: 0;
 	bottom: -25%;
 	left: -25%;
+	margin: 0;
+	content: "";
+	text-align: left;
+	opacity: 0;
 }
 
 nav .action li a:hover {
-	color: #F8F9FA;
 	z-index: 1;
+	color: #F8F9FA;
 }
 
 nav .action li a:hover:after {
 	z-index: -1;
-	animation: fill 1s forwards;
-	-webkit-animation: fill 1s forwards;
 	-moz-animation: fill 1s forwards;
+	-webkit-animation: fill 1s forwards;
+	animation: fill 1s forwards;
 	opacity: 1;
 }
 
@@ -110,10 +110,63 @@ nav .action li a:hover:after {
 
 main {
 	position: relative;
-	width: 100%;
 	display: flex;
 	align-items: center;
+	justify-content: center;
+	width: 100%;
 	min-height: 75vh;
+}
+
+.searchbar {
+	display: flex;
+	flex-direction: row;
+	width: 60%;
+	border-radius: 10px;
+	background-color: #FFF;
+}
+
+.dropdown {
+	width: 75px;
+	margin-right: 1px;
+}
+
+.dropdown-toggle {
+	width: 100%;
+	text-align: left;
+	border-radius: 5px 0 0 5px;
+}
+
+.btn:focus, .btn:active:focus {
+	box-shadow: none;
+}
+
+.dropdown-toggle::after {
+	position: absolute;
+	top: 45%;
+	right: 10%;
+}
+
+.dropdown-menu {
+	background-color: #343A40;
+}
+
+.dropdown-item {
+	color: #F8F9FA;
+}
+
+.form-control {
+	margin-right: 1px;
+	transition: unset;
+	border-color: transparent;
+}
+
+.form-control:focus {
+	border: none;
+	box-shadow: none;
+}
+
+.fa-search {
+	color: #000;
 }
 
 /* Footer */
@@ -127,9 +180,9 @@ footer {
 
 .video-bg {
 	position: fixed;
+	z-index: -1;
 	top: 0;
 	left: 0;
-	z-index: -1;
 	width: 100%;
 	height: auto;
 }
@@ -164,12 +217,12 @@ footer {
 
 @media (max-aspect-ratio: 16/9) {
 	.video-bg {
-		width:auto;
-		height: 100%;
 		top: -9999px;
+		right: -9999px;
 		bottom: -9999px;
 		left: -9999px;
-		right: -9999px;
+		width:auto;
+		height: 100%;
 		margin: auto;
 	}
 }
@@ -194,39 +247,39 @@ footer {
 
 	nav .navigation.active {
 		position: fixed;
+		z-index: 1;
 		top: 0;
 		left: 0;
-		width: 100%;
-		height: 100%;
 		display: flex;
+		align-items: center;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
+		width: 100%;
+		height: 100%;
 		background-color: #2E4052;
-		z-index: 1;
 	}
 
 	.menuBurger {
 		position: relative;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		width: 30px;
 		height: 30px;
-		cursor: pointer;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		transition: .2s;
 		margin-left: 20px;
-		z-index: 1;
+		cursor: pointer;
+		transition: .2s;
 	}
 
 	.menuBurger::before {
-		content: "";
 		position: absolute;
 		width: 28px;
 		height: 2px;
-		background-color: #fff;
+		content: "";
 		transition: .2s;
 		transform: translateY(-10px);
+		background-color: #fff;
 		box-shadow: 0 10px 0 #fff;
 	}
 
@@ -236,13 +289,13 @@ footer {
 	}
 
 	.menuBurger::after {
-		content: "";
 		position: absolute;
 		width: 28px;
 		height: 2px;
-		background-color: #fff;
+		content: "";
 		transition: .2s;
 		transform: translateY(10px);
+		background-color: #fff;
 	}
 
 	.menuBurger.active::after {
