@@ -3,8 +3,6 @@ $(document).ready(function () {
 
 	const reroll = config.REROLL_API;
     let matchList = [];
-    let champList = [];
-    let content = String();
 
     $("#error-username").hide();
     $("#lottie").hide();
@@ -44,17 +42,22 @@ $(document).ready(function () {
             let gameinfo = JSON.parse(sessionStorage.getItem("gameInfo"));
             console.log(gameinfo);
 
-            queryChampList();
-            queryChampPic();
+            setTimeout(function() {redirect()}, 5000);
+
         });
 
         $.ajax(settings).fail(function() {
             $("#error-username").show().fadeOut(5000);
+            $("#lottie").hide();
         });
 
     }
 
-    function getLeaderboard(riot_api_url, limit = 50) {
+    function redirect(){
+        window.location.href = "http://localhost:5500/summoner.html"
+    }
+
+    function getLeaderboard(riot_api_url, limit = 10) {
 
         let query_url = '/tft/league/v1/grandmaster'
 
@@ -260,43 +263,7 @@ $(document).ready(function () {
         });
     }
 
-    function queryChampList(){
-        let gameinfo = JSON.parse(sessionStorage.getItem("gameInfo"));
-        let getSum = JSON.parse(sessionStorage.getItem("summonerJSON"));
-
-        for (let a = 0; a < gameinfo.length; a++) {
-            const game = gameinfo[a];
-            for (let i = 0; i < game.info.participants.length; i++) {
-                const element = game.info.participants[i];
-                if  (element.puuid === getSum.puuid){
-                    for (let a = 0; a < element.units.length; a++) {
-                        const champion = element.units[a];
-                        let champName = champion.character_id.split("_");
-                        champList.push(champName[1])
-                    }
-                    champList.push("*")
-                    break;
-                }
-            }
-
-        }
-    }
-
-    function queryChampPic(){
-        for (let i = 0; i < champList.length; i++) {
-            if(champList[i] !== "*"){
-                const champion = champList[i];
-                content += `<img src="assets/img/champion/${champion}.png" alt="${champion}">`;
-                $("#error-username").html(content)
-            } else {
-                content += `<br>`;
-            }
-        }
-        $("#searchSum").trigger('click');
-        $("#lottie").hide();
-    }
-
-        // Onclick show leaderboard
+    // Onclick show leaderboard
     $("#searchLB").on("click", function (e) {
         e.preventDefault();
         let region = $("#regionSel").val();
