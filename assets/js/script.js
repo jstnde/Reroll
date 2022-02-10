@@ -1,18 +1,8 @@
 $(document).ready(function () {
 	$("#region-select").html($(".region-option.active").html());
 
-<<<<<<< HEAD
-    let reroll = config.REROLL_API
-    let matchList = new Array();
-    let champList = new Array();
-    let content = new String();
-    // sessionStorage.clear();
-=======
 	const reroll = config.REROLL_API;
     let matchList = [];
-    let champList = [];
-    let content = String();
->>>>>>> 8e6edde526e7143965b644840f268c745014f78c
 
     $("#error-username").hide();
     $("#lottie").hide();
@@ -46,7 +36,6 @@ $(document).ready(function () {
             for (let i = 0; i < matchList.length; i++) {
                 let element = matchList[i];
                 eachGameInfo(element);
-<<<<<<< HEAD
             }            
             
             let gameinfo = JSON.parse(sessionStorage.getItem("gameInfo"));
@@ -54,15 +43,6 @@ $(document).ready(function () {
 
             setTimeout(function() {redirect()}, 5000);
                
-=======
-            }
-
-            let gameinfo = JSON.parse(sessionStorage.getItem("gameInfo"));
-            console.log(gameinfo);
-
-            queryChampList();
-            queryChampPic();
->>>>>>> 8e6edde526e7143965b644840f268c745014f78c
         });
 
         $.ajax(settings).fail(function() {
@@ -281,47 +261,7 @@ $(document).ready(function () {
         });
     }
 
-<<<<<<< HEAD
     // Onclick show leaderboard
-=======
-    function queryChampList(){
-        let gameinfo = JSON.parse(sessionStorage.getItem("gameInfo"));
-        let getSum = JSON.parse(sessionStorage.getItem("summonerJSON"));
-
-        for (let a = 0; a < gameinfo.length; a++) {
-            const game = gameinfo[a];
-            for (let i = 0; i < game.info.participants.length; i++) {
-                const element = game.info.participants[i];
-                if  (element.puuid == getSum.puuid){
-                    for (let a = 0; a < element.units.length; a++) {
-                        const champion = element.units[a];
-                        let champName = champion.character_id.split("_");
-                        champList.push(champName[1])
-                    }
-                    champList.push("*")
-                    break;
-                }
-            }
-
-        }
-    }
-
-    function queryChampPic(){
-        for (let i = 0; i < champList.length; i++) {
-            if(champList[i] != "*"){
-                const champion = champList[i];
-                content += `<img src="assets/img/champion/${champion}.png" alt="${champion}">`;
-                $("#error-username").html(content)
-            } else {
-                content += `<br>`;
-            }
-        }
-        $("#searchSum").trigger('click');
-        $("#lottie").hide();
-    }
-
-        // Onclick show leaderboard
->>>>>>> 8e6edde526e7143965b644840f268c745014f78c
     $("#searchLB").on("click", function (e) {
         e.preventDefault();
         let region = $("#regionSel").val();
