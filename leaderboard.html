@@ -8,8 +8,7 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
-	Enter Summoner Name:<input type="text" name="sumName" id="sumName">
+	Select region for Grandmaster:
 	<select name="regionSel" id="regionSel">
 		<option value="BR1">BR1</option>
 		<option value="EUN1">EUN1</option>
@@ -23,12 +22,22 @@
 		<option value="RU">RU</option>
 		<option value="TR1">TR1</option>
 	</select>
-	<button type="submit" id="searchSum">Search</button>
+	<button type="submit" id="searchLB">Search</button>
 	<div id="error-username">
 		<div class="alert alert-success" role="alert">
 			Invalid Username.
 		</div>
 	</div>
+	<table id="leaderboard">
+		<thead>
+			<th>Name</th>
+			<th>League Points</th>
+			<th>Rank</th>
+			<th>Total Games</th>
+			<th>Win%</th>
+		</thead>
+		<tbody></tbody>
+	</table>
 
 <script src="assets/js/jquery-3.6.0.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
