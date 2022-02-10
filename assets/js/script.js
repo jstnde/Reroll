@@ -67,12 +67,22 @@ $(document).ready(function () {
         }
 
         $.ajax(settings).done(function (response) {
+            
             let content = "";
-
+            
+            console.log(response);
             for (let i = 0; i < limit; i++) {
+                let percentWin = 0;
                 let element = response.entries[i];
-                // content = `${content}<p>${element.summonerName}</p><br>`;
-                content = `${content}<p>${element.summonerName}</p>`
+                let totalGames = element.wins + element.losses;
+                percentWin = element.wins/totalGames * 100; 
+                console.log(element.summonerId);
+                content = `${content}<tr id='${element.summonerId}'>
+                <td>${element.summonerName}</td>\t
+                <td>${element.leaguePoints}</td>\t
+                <td>${element.rank}</td>\t
+                <td>${totalGames}</td>\t
+                <td>${percentWin.toFixed(2)}</td>`
             }
             $("#leaderboard tbody").html(content);
         })
