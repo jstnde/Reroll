@@ -268,7 +268,7 @@ $(document).ready(function () {
             const game = gameinfo[a];
             for (let i = 0; i < game.info.participants.length; i++) {
                 const element = game.info.participants[i];
-                if  (element.puuid == getSum.puuid){
+                if  (element.puuid === getSum.puuid){
                     for (let a = 0; a < element.units.length; a++) {
                         const champion = element.units[a];
                         let champName = champion.character_id.split("_");
@@ -284,7 +284,7 @@ $(document).ready(function () {
 
     function queryChampPic(){
         for (let i = 0; i < champList.length; i++) {
-            if(champList[i] != "*"){
+            if(champList[i] !== "*"){
                 const champion = champList[i];
                 content += `<img src="assets/img/champion/${champion}.png" alt="${champion}">`;
                 $("#error-username").html(content)
@@ -306,15 +306,14 @@ $(document).ready(function () {
     });
 
     // On click show summoner
-    $("#searchSum").on("click", function (e) {
+    $(".searchbar").submit(function (e) {
         e.preventDefault();
         let sumName = $("#sumName").val();
-        let region = $("#regionSel").val();
+        let region = $(".region-option.active").attr("data-code");
         let riot_api_url = `https://${region}.api.riotgames.com`;
 
         getSummoner(sumName, riot_api_url);
         $("#lottie").show();
-
     });
 
 	$(".menuBurger").click(function() {

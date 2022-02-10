@@ -28,20 +28,20 @@
 			<div class="dropdown">
 				<button class="btn btn-secondary dropdown-toggle" id="region-select" data-bs-toggle="dropdown" type="button"></button>
 				<div class="dropdown-menu">
-					<button class="dropdown-item region-option" type="button">BR</button>
-					<button class="dropdown-item region-option" type="button">EUN</button>
-					<button class="dropdown-item region-option" type="button">EUW</button>
-					<button class="dropdown-item region-option" type="button">JP</button>
-					<button class="dropdown-item region-option" type="button">KR</button>
-					<button class="dropdown-item region-option" type="button">LAN</button>
-					<button class="dropdown-item region-option" type="button">LAS</button>
-					<button class="dropdown-item region-option active" type="button">NA</button>
-					<button class="dropdown-item region-option" type="button">OCE</button>
-					<button class="dropdown-item region-option" type="button">TR</button>
-					<button class="dropdown-item region-option" type="button">RU</button>
+					<button class="dropdown-item region-option" data-code="BR1" type="button">BR</button>
+					<button class="dropdown-item region-option" data-code="EUN1" type="button">EUN</button>
+					<button class="dropdown-item region-option" data-code="EUW1" type="button">EUW</button>
+					<button class="dropdown-item region-option" data-code="JP1" type="button">JP</button>
+					<button class="dropdown-item region-option" data-code="KR" type="button">KR</button>
+					<button class="dropdown-item region-option" data-code="LA1" type="button">LAN</button>
+					<button class="dropdown-item region-option" data-code="LA2" type="button">LAS</button>
+					<button class="dropdown-item region-option active" data-code="NA1" type="button">NA</button>
+					<button class="dropdown-item region-option" data-code="OC1" type="button">OCE</button>
+					<button class="dropdown-item region-option" data-code="TR1" type="button">TR</button>
+					<button class="dropdown-item region-option" data-code="RU" type="button">RU</button>
 				</div>
 			</div>
-			<input class="form-control" type="text" placeholder="Search for summoner...">
+			<input class="form-control" id="sumName" type="text" placeholder="Search for summoner...">
 			<input type="submit" hidden>
 			<button class="btn" type="submit"><i class="fa fa-search"></i></button>
 			<div id="error-username">
