@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Reroll</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+	<header>
+		<a href="#" class="logo">Reroll;</a>
+		<nav>
+			<ul class="navigation">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Leaderboard</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+			<ul class="action">
+				<li><a href="#">Login</a></li>
+				<div class="menuBurger"></div>
+			</ul>
+		</nav>
+	</header>
+	<main>
+        <div class="column">
+            <div class="cover">
+                <video class="video-bg" autoplay muted loop>
+                    <source src="assets/imgs/bg-video.webm" type="video/webm">
+                </video>
+                <div class="summonerInfo">
+                    <img src="assets/img/champion/Ahri.png" alt="" class="profile-icon">
+                    <span id="summonerName" class="summonerName"></span>
+                    <button>Favourite</button>
+                </div>
+            </div>
+            <div class="summonerMetaData">
+                <table>
+                    <tr>Placement</tr>
+                    <tr> - </tr>
+                    <tr>Champions</tr>
+                    <tr> - </tr>
+                    <tr>Gold left</tr>
+                    <tr> - </tr>
+                    <tr>Players Eliminated</tr>
+                    <tr> - </tr>
+                    <tr>Damage to Players</tr>
+                    <div id="summonerMetaData">
+                    </div>
+                </table>
+            </div>
+        </div>
+		<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+		<lottie-player id="lottie" src="https://assets4.lottiefiles.com/private_files/lf30_pidikbny.json" background="transparent"  speed="1"  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+	</main>
+	<footer>
+		//yet to decide what lies here :)
+	</footer>
+	<script src="assets/js/jquery-3.6.0.min.js"></script>
+	<script src="assets/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/js/config.js"></script>
+	<script src="assets/js/script.js"></script>
+    <script src="assets/js/summoner.js"></script>
+</body>
+</html>
