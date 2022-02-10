@@ -1,10 +1,18 @@
 $(document).ready(function () {
+	$("#region-select").html($(".region-option.active").html());
 
+<<<<<<< HEAD
     let reroll = config.REROLL_API
     let matchList = new Array();
     let champList = new Array();
     let content = new String();
     // sessionStorage.clear();
+=======
+	const reroll = config.REROLL_API;
+    let matchList = [];
+    let champList = [];
+    let content = String();
+>>>>>>> 8e6edde526e7143965b644840f268c745014f78c
 
     $("#error-username").hide();
     $("#lottie").hide();
@@ -34,10 +42,11 @@ $(document).ready(function () {
 
             $("#error-username").html(parseSumJSON.name + " " + region).show();
             queryGames(parseSumJSON.puuid, riot_api_url);
-            
+
             for (let i = 0; i < matchList.length; i++) {
                 let element = matchList[i];
                 eachGameInfo(element);
+<<<<<<< HEAD
             }            
             
             let gameinfo = JSON.parse(sessionStorage.getItem("gameInfo"));
@@ -45,6 +54,15 @@ $(document).ready(function () {
 
             setTimeout(function() {redirect()}, 5000);
                
+=======
+            }
+
+            let gameinfo = JSON.parse(sessionStorage.getItem("gameInfo"));
+            console.log(gameinfo);
+
+            queryChampList();
+            queryChampPic();
+>>>>>>> 8e6edde526e7143965b644840f268c745014f78c
         });
 
         $.ajax(settings).fail(function() {
@@ -60,7 +78,7 @@ $(document).ready(function () {
 
     function getLeaderboard(riot_api_url, limit = 10) {
 
-        let query_url = '/tft/league/v1/grandmaster' 
+        let query_url = '/tft/league/v1/grandmaster'
 
         var settings = {
             'cache': false,
@@ -72,15 +90,15 @@ $(document).ready(function () {
         }
 
         $.ajax(settings).done(function (response) {
-            
+
             let content = "";
-            
+
             console.log(response);
             for (let i = 0; i < limit; i++) {
                 let percentWin = 0;
                 let element = response.entries[i];
                 let totalGames = element.wins + element.losses;
-                percentWin = element.wins/totalGames * 100; 
+                percentWin = element.wins/totalGames * 100;
                 console.log(element.summonerId);
                 content = `${content}<tr id='${element.summonerId}'>
                 <td>${element.summonerName}</td>\t
@@ -104,58 +122,58 @@ $(document).ready(function () {
         switch (region) {
             case "NA1":
                 region = "americas";
-                riot_api_url = `https://${region}.api.riotgames.com`;    
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
-                
+
             case "BR1":
                 region = "americas";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "LA1":
                 region = "americas";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "LA2":
                 region = "americas";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "OCE1":
                 region = "americas";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "JP1":
                 region = "asia";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "KR":
                 region = "asia";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
-                  
+
             case "EUN1":
                 region = "europe";
                 riot_api_url = `https://${region}.api.riotgames.com`;
-                break; 
+                break;
 
             case "EUW1":
                 region = "europe";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "TR1":
                 region = "europe";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
-                break; 
+                riot_api_url = `https://${region}.api.riotgames.com`;
+                break;
 
             case "RU":
                 region = "europe";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
-                break;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
+                break;
 
             default:
                 break;
@@ -182,64 +200,64 @@ $(document).ready(function () {
     }
 
     function eachGameInfo(matchId){
-        let query_url = `/tft/match/v1/matches/${matchId}?`;        
+        let query_url = `/tft/match/v1/matches/${matchId}?`;
         let region = $("#regionSel").val();
 
         switch (region) {
             case "NA1":
                 region = "americas";
-                riot_api_url = `https://${region}.api.riotgames.com`;    
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
-                
+
             case "BR1":
                 region = "americas";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "LA1":
                 region = "americas";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "LA2":
                 region = "americas";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "OCE1":
                 region = "americas";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "JP1":
                 region = "asia";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "KR":
                 region = "asia";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
-                  
+
             case "EUN1":
                 region = "europe";
                 riot_api_url = `https://${region}.api.riotgames.com`;
-                break; 
+                break;
 
             case "EUW1":
                 region = "europe";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
                 break;
 
             case "TR1":
                 region = "europe";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
-                break; 
+                riot_api_url = `https://${region}.api.riotgames.com`;
+                break;
 
             case "RU":
                 region = "europe";
-                riot_api_url = `https://${region}.api.riotgames.com`;  
-                break;  
+                riot_api_url = `https://${region}.api.riotgames.com`;
+                break;
 
             default:
                 break;
@@ -263,7 +281,47 @@ $(document).ready(function () {
         });
     }
 
+<<<<<<< HEAD
     // Onclick show leaderboard
+=======
+    function queryChampList(){
+        let gameinfo = JSON.parse(sessionStorage.getItem("gameInfo"));
+        let getSum = JSON.parse(sessionStorage.getItem("summonerJSON"));
+
+        for (let a = 0; a < gameinfo.length; a++) {
+            const game = gameinfo[a];
+            for (let i = 0; i < game.info.participants.length; i++) {
+                const element = game.info.participants[i];
+                if  (element.puuid == getSum.puuid){
+                    for (let a = 0; a < element.units.length; a++) {
+                        const champion = element.units[a];
+                        let champName = champion.character_id.split("_");
+                        champList.push(champName[1])
+                    }
+                    champList.push("*")
+                    break;
+                }
+            }
+
+        }
+    }
+
+    function queryChampPic(){
+        for (let i = 0; i < champList.length; i++) {
+            if(champList[i] != "*"){
+                const champion = champList[i];
+                content += `<img src="assets/img/champion/${champion}.png" alt="${champion}">`;
+                $("#error-username").html(content)
+            } else {
+                content += `<br>`;
+            }
+        }
+        $("#searchSum").trigger('click');
+        $("#lottie").hide();
+    }
+
+        // Onclick show leaderboard
+>>>>>>> 8e6edde526e7143965b644840f268c745014f78c
     $("#searchLB").on("click", function (e) {
         e.preventDefault();
         let region = $("#regionSel").val();
@@ -281,11 +339,17 @@ $(document).ready(function () {
 
         getSummoner(sumName, riot_api_url);
         $("#lottie").show();
-    
+
     });
 
 	$(".menuBurger").click(function() {
 		$(".menuBurger").toggleClass("active");
 		$(".navigation").toggleClass("active");
+	});
+
+	$(".region-option").click(function () {
+		$(".region-option.active").removeClass("active");
+		$(this).addClass("active");
+		$("#region-select").html($(this).html());
 	});
 });
