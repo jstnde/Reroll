@@ -264,6 +264,11 @@ $(document).ready(function () {
         });
     }
 
+	// on hide modal -> submit
+	$('#filterModal').on('hidden.bs.modal', function () {
+		$(".searchLB").submit();
+	});
+
     // on submit show leaderboard
     $("#searchLB").on("click", function (e) {
 		e.preventDefault();
