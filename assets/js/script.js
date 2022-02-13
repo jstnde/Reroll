@@ -2,7 +2,8 @@ $(document).ready(function () {
 	$("#region-select").html($(".region-option.active").html());
 	$("#rank-select").html($(".rank-option.active").html());
 
-	const reroll = config.REROLL_API;
+    const reroll = config.REROLL_API;
+    const db = config.DB_API;
     let matchList = [];
 
     $("#error-username").hide();
@@ -266,45 +267,176 @@ $(document).ready(function () {
         });
     }
 
-	// on hide modal -> submit
-	$('#filterModal').on('hidden.bs.modal', function () {
-		$(".searchLB").submit();
-	});
+    async function getUsers() {
+        const settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://reroll-601d.restdb.io/rest/reroll-users",
+            "method": "GET",
+            "headers": {
+                "content-type": "application/json",
+                "x-apikey": db,
+                "cache-control": "no-cache"
+            }
+        }
 
-	// on submit show leaderboard
-	$(".searchLB").submit(function (e) {
-		e.preventDefault();
-		const region = $(".region-option.active").attr("data-code");
-		const riot_api_url = `https://${region}.api.riotgames.com`;
-		const rank = $(".rank-option.active").attr("data-rank");
-		getLeaderboard(riot_api_url, rank);
-	});
+        return $.ajax(settings);
+    }
 
-	// on submit show summoner
-	$(".searchSum").submit(function (e) {
-		e.preventDefault();
-		let sumName = $("#sumName").val();
-		let region = $(".region-option.active").attr("data-code");
-		let riot_api_url = `https://${region}.api.riotgames.com`;
+    async function signIn(userId = "") {
+        const username = $("#login-username");
+        const password = $("#login-password");
+        const error = $(".signInForm form .error-msg");
 
-		getSummoner(sumName, riot_api_url);
-		$("#lottie").show();
-	});
+        username.removeClass("error");
+        password.removeClass("error");
+        error.css("visibility", "hidden");
 
-	$(".menuBurger").click(function() {
-		$(".menuBurger").toggleClass("active");
-		$(".navigation").toggleClass("active");
-	});
+        let success = false;
+        if (userId === "") {
+            const response = await getUsers();
+            console.log(response);
 
-	$(".region-option").click(function () {
-		$(".region-option.active").removeClass("active");
-		$(this).addClass("active");
-		$("#region-select").html($(this).html());
-	});
+            for (const user of response) {
+                if (user.Username === username.val() && user.Password === password.val()) {
+                    sessionStorage.setItem("login", user._id);
+                    success = true;
+                    break;
+                }
+            }
+        }
+        else {
+            sessionStorage.setItem("login", userId);
+            success = true;
+        }
 
-	$(".rank-option").click(function () {
-		$(".rank-option.active").removeClass("active");
-		$(this).addClass("active");
-		$("#rank-select").html($(this).html());
-	});
+        if (success) {
+            alert("Sign In Successful!");
+            location.href = "index.html";
+        }
+        else {
+            username.addClass("error");
+            password.addClass("error");
+            error.css("visibility", "visible");
+        }
+    }
+
+    async function signUp() {
+        const response = await getUsers();
+        console.log(response);
+        const user = $("#register-username");
+        const email = $("#register-email");
+        const pass = $("#register-password");
+        const cpass = $("#register-confirm-password");
+        const error = $(".signUpForm form .error-msg");
+        let taken = [];
+
+        user.removeClass("error");
+        pass.removeClass("error");
+        cpass.removeClass("error");
+        error.css("visibility", "hidden");
+
+        for (const user of response) {
+            taken.push(user.Username);
+        }
+
+        if (taken.includes(user.val())) {
+            user.addClass("error");
+            error.find("small").html("username taken");
+            error.css("visibility", "visible");
+            return;
+        }
+        else if (pass.val() !== cpass.val()) {
+            pass.addClass("error");
+            cpass.addClass("error");
+            error.find("small").html("passwords do not match");
+            error.css("visibility", "visible");
+            return;
+        }
+
+        const jsondata = {
+            "Username": user.val(),
+            "Email": email.val(),
+            "Password": pass.val(),
+            "Favourites": ""
+        };
+
+        const settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://reroll-601d.restdb.io/rest/reroll-users",
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "x-apikey": db,
+                "cache-control": "no-cache"
+            },
+            "processData": false,
+            "data": JSON.stringify(jsondata)
+        };
+
+        return $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    }
+
+    // on hide modal -> submit
+    $('#filterModal').on('hidden.bs.modal', function () {
+        $(".searchLB").submit();
+    });
+
+    // on submit show leaderboard
+    $(".searchLB").submit(function (e) {
+        e.preventDefault();
+        const region = $(".region-option.active").attr("data-code");
+        const riot_api_url = `https://${region}.api.riotgames.com`;
+        const rank = $(".rank-option.active").attr("data-rank");
+        getLeaderboard(riot_api_url, rank);
+    });
+
+    // on submit show summoner
+    $(".searchSum").submit(function (e) {
+        e.preventDefault();
+        let sumName = $("#sumName").val();
+        let region = $(".region-option.active").attr("data-code");
+        let riot_api_url = `https://${region}.api.riotgames.com`;
+
+        getSummoner(sumName, riot_api_url);
+        $("#lottie").show();
+    });
+
+    $(".menuBurger").click(function() {
+        $(".menuBurger").toggleClass("active");
+        $(".navigation").toggleClass("active");
+    });
+
+    $(".region-option").click(function () {
+        $(".region-option.active").removeClass("active");
+        $(this).addClass("active");
+        $("#region-select").html($(this).html());
+    });
+
+    $(".rank-option").click(function () {
+        $(".rank-option.active").removeClass("active");
+        $(this).addClass("active");
+        $("#rank-select").html($(this).html());
+    });
+
+    $(".signUpBtn").click(function() {
+        $(".form-container").addClass("active");
+    });
+
+    $(".signInBtn").click(function() {
+        $(".form-container").removeClass("active");
+    });
+
+    $(".signInForm").submit(async function(e) {
+        e.preventDefault();
+        await signIn();
+    });
+
+    $(".signUpForm").submit(async function(e) {
+        e.preventDefault();
+        await signIn(await signUp());
+    });
 });
