@@ -1,4 +1,15 @@
 $(document).ready(function () {
+	const user = sessionStorage.getItem("login");
+	const loginBtn = $("nav .action li a");
+
+	if (user !== null) {
+		loginBtn.html(JSON.parse(user).username);
+		loginBtn.attr("href", "profile.html");
+	}
+	else {
+		loginBtn.html("login");
+	}
+
 	$("#region-select").html($(".region-option.active").html());
 	$("#rank-select").html($(".rank-option.active").html());
 
@@ -283,7 +294,7 @@ $(document).ready(function () {
         return $.ajax(settings);
     }
 
-    async function signIn(userId = "") {
+    async function signIn(userId = null) {
         const username = $("#login-username");
         const password = $("#login-password");
         const error = $(".signInForm form .error-msg");
@@ -293,20 +304,20 @@ $(document).ready(function () {
         error.css("visibility", "hidden");
 
         let success = false;
-        if (userId === "") {
+        if (userId === null) {
             const response = await getUsers();
             console.log(response);
 
             for (const user of response) {
                 if (user.Username === username.val() && user.Password === password.val()) {
-                    sessionStorage.setItem("login", user._id);
+                    sessionStorage.setItem("login", JSON.stringify({"id": user._id, "username": user.Username}));
                     success = true;
                     break;
                 }
             }
         }
         else {
-            sessionStorage.setItem("login", userId);
+            sessionStorage.setItem("login", JSON.stringify({"id": userId._id, "username": userId.Username}));
             success = true;
         }
 
