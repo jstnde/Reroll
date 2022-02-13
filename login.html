@@ -24,15 +24,39 @@
 		</nav>
 	</header>
 	<main>
-		<div>
-			<div>
-				<div>
+		<div class="container">
+			<div class="box-container">
+				<div class="box signIn">
 					<h1>Have An Account?</h1>
-					<button>Sign in</button>
+					<button class="signInBtn">Sign in</button>
 				</div>
-				<div>
+				<div class="box signUp">
 					<h1>Don't Have An Account?</h1>
-					<button>Sign up</button>
+					<button class="signUpBtn">Sign up</button>
+				</div>
+			</div>
+			<div class="form-container">
+				<div class="form signInForm">
+					<form>
+						<h3>Sign In</h3>
+						<input id="login-username" type="text" placeholder="Username" required>
+						<input id="login-password" type="password" placeholder="Password" required>
+						<div class="error-msg"><small>username/password incorrect</small></div>
+						<input type="submit" hidden>
+						<input type="submit" value="Login">
+					</form>
+				</div>
+				<div class="form signUpForm">
+					<form>
+						<h3>Sign Up</h3>
+						<input id="register-username" type="text" placeholder="Username" required>
+						<input id="register-email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email" required>
+						<input id="register-password" type="password" placeholder="Password" required>
+						<input id="register-confirm-password" type="password" placeholder="Confirm Password" required>
+						<div class="error-msg"><small>error msg</small></div>
+						<input type="submit" hidden>
+						<input type="submit" value="Register">
+					</form>
 				</div>
 			</div>
 		</div>

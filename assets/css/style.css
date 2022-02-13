@@ -81,29 +81,20 @@ nav .navigation li a:hover:after {
 
 nav .action li a {
 	font-size: 1.25em;
-	transition: all 1s;
-}
-
-nav .action li a:after {
-	bottom: -25%;
-	left: -25%;
 	margin: 0;
-	content: "";
-	text-align: left;
-	opacity: 0;
+	padding: 5px 18px;
+	transition: all .3s;
+	color: #000;
+	border: 1px solid transparent;
+	border-radius: 60px;
+	background-color: #fff;
 }
 
 nav .action li a:hover {
 	z-index: 1;
-	color: #F8F9FA;
-}
-
-nav .action li a:hover:after {
-	z-index: -1;
-	-moz-animation: fill 1s forwards;
-	-webkit-animation: fill 1s forwards;
-	animation: fill 1s forwards;
-	opacity: 1;
+	color: #f8f9fa;
+	border: 1px solid #fff;
+	background-color: rgba(255, 255, 255, 0.1);
 }
 
 .menuBurger {
@@ -283,6 +274,140 @@ main {
 	min-height: 75vh;
 }
 
+/* Login Page */
+
+.container {
+	position: relative;
+	width: 800px;
+	height: 500px;
+	margin: 20px;
+	padding: 0;
+}
+
+.box-container {
+	position: absolute;
+	top: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 420px;
+	background-color: rgba(255, 0, 0, 0.2);
+	box-shadow: 0 5px 45px rgba(0, 0, 0, 0.15);
+}
+
+.box-container .box {
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+	height: 100%;
+}
+
+.box-container .box h1 {
+	font-size: 1.8em;
+	font-weight: 500;
+	margin-bottom: 20px;
+	color: #fff;
+}
+
+.box-container .box button {
+	font-size: 16px;
+	font-weight: 500;
+	padding: 8px 16px;
+	cursor: pointer;
+	color: #333;
+	border: none;
+	background-color: #fff;
+}
+
+.form-container {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	display: flex;
+	overflow: hidden;
+	align-items: center;
+	justify-content: center;
+	width: 50%;
+	height: 100%;
+	transition: 0.3s ease-in-out;
+	background-color: #fff;
+	box-shadow: 0 5px 45px rgba(0, 0, 0, 0.25);
+}
+
+.form-container.active {
+	left: 50%;
+}
+
+.form-container .form {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	padding: 50px;
+	transition: 0.3s ease-in-out;
+}
+
+.form-container.active .signInForm {
+	left: -100%;
+}
+
+.form-container .signUpForm {
+	left: 100%;
+}
+
+.form-container.active .signUpForm {
+	left: 0;
+}
+
+.form-container .form form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.form-container .form form h3 {
+	font-size: 1.5em;
+	font-weight: 500;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+.form-container .form form input {
+	font-size: 16px;
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 1px solid #333;
+	outline: none;
+	color: #000;
+}
+
+.form-container .form form input.error {
+	border: 1px solid #d00;
+}
+
+.form-container .form form input[type="submit"] {
+	max-width: 100px;
+	cursor: pointer;
+	color: #fff;
+	border: none;
+	background-color: #000;
+}
+
+.form-container .form form div {
+	margin-bottom: 10px;
+	visibility: hidden;
+}
+
+.form-container .form form div small {
+	color: #d00;
+}
+
+
 /* Footer */
 
 footer {
@@ -299,25 +424,6 @@ footer {
 	left: 0;
 	width: 100%;
 	height: auto;
-}
-
-/* Keyframes */
-
-@-webkit-keyframes fill {
-	0% {
-		width: 0;
-		height: 1px;
-	}
-	50% {
-		width: 150%;
-		height: 1px;
-	}
-	100% {
-		width: 150%;
-		height: 150%;
-		background-color: rgba(46, 64, 82, .75);
-		border-radius: 3px;
-	}
 }
 
 /* Media Queries */
@@ -361,7 +467,7 @@ footer {
 
 	nav .navigation.active {
 		position: fixed;
-		z-index: 1;
+		z-index: 10;
 		top: 0;
 		left: 0;
 		display: flex;
@@ -375,7 +481,7 @@ footer {
 
 	.menuBurger {
 		position: relative;
-		z-index: 1;
+		z-index: 10;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -436,5 +542,41 @@ footer {
 	.summonerMetaData img {
 		width: 30px;
 		height: 30px;
+	}
+
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		max-width: 400px;
+		height: 650px;
+	}
+
+	.container .box-container {
+		top: 0;
+		height: 100%;
+	}
+
+	.form-container {
+		top: 0;
+		width: 100%;
+		height: 500px;
+		box-shadow: #e2e2e2;
+	}
+
+	.form-container.active {
+		top: 150px;
+		left: 0;
+	}
+
+	.box-container .box {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 150px;
+	}
+
+	.signIn {
+		top: 0;
 	}
 }
