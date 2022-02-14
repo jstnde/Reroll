@@ -51,7 +51,7 @@ User Testing Plan: To access, Click [Link Here](https://docs.google.com/spreadsh
 
 ### Media
 
-- To be filled soon
+- Champion Images from [DDragon (Riot API Libraries)](https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html)
 
 ### Acknowledgment
 
