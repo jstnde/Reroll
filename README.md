@@ -39,7 +39,7 @@ Github Page: To access, Click [Link here](https://jstnde.github.io/Reroll/)
 
 ## Testing
 
-I. To be filled soon
+User Testing Plan: To access, Click [Link Here](https://docs.google.com/spreadsheets/d/1-bX5V7gpDPuSNAzdp1txPynxlz8rOFr4/edit?usp=sharing&ouid=105081913876152766046&rtpof=true&sd=true)
 
 ## Credits
 
