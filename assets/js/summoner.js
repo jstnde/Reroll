@@ -1,4 +1,4 @@
-let matchList = new Array();
+let matchList = 0;
 let champList = new Array();
 let content = new String();
 let placementList = new Array();
@@ -8,7 +8,7 @@ let damagetoplayersList = new Array();
 let gameinfo = JSON.parse(sessionStorage.getItem("gameInfo"));
 let getSum = JSON.parse(sessionStorage.getItem("summonerJSON"));
 
-champList.push("*")
+// champList.push("*")
 
 function queryChampList(){
     for (let a = 0; a < gameinfo.length; a++) {
@@ -16,6 +16,7 @@ function queryChampList(){
         for (let i = 0; i < game.info.participants.length; i++) {
             const element = game.info.participants[i];
             if  (element.puuid == getSum.puuid){
+                matchList++;
                 placementList.push(element.placement)
                 goldleftList.push(element.gold_left)
                 playerelimList.push(element.players_eliminated)
@@ -33,36 +34,52 @@ function queryChampList(){
 }
 
 function queryChampPic(){
-    let index = 0
-    for (let i = 0; i < champList.length; i++) {
-        if(champList[i] != "*"){                
-            const champion = champList[i];
-            content += `
-            <td><img src="assets/img/champion/${champion}.png" alt="${champion}" width="50px" height="50px"></td>
+    let index = 0;
+    let b = 0;
+    for (let i = 0; i < matchList; i++) {
+        console.log(matchList);
+        if (placementList.length != index){
+            content = `${content}
+            <tr>${getSum.character_id}</tr>
+            <td>${placementList[index]}</td>
+            <td><div class="champPics"></div></td>
+            <td>${goldleftList[index]}</td>
+            <td>${playerelimList[index]}</td>
+            <td>${damagetoplayersList[index]}</td>
             `;
+            index++;
         } else {
-            if (placementList.length == index){
-                break;
-            } else{ 
-                content += `
-                <td class="break">${placementList[index]}</td>
-                <td class="breakright">${goldleftList[index]}</td>
-                <td class="breakright">${playerelimList[index]}</td>
-                <td class="breakright">${damagetoplayersList[index]}</td>
-                `
-                index++;
-            }
-            // break;
-            
-        } 
-        $("#summonerMetaData").html(content)
+            break;
+        }          
+        $("#sumData tbody").html(content)
+        const d = new Date();
+        $("#updateTime").html(`${d.getDate()}/${d.getMonth()}/${d.getFullYear()} ${d.getHours() > 12 ? d.getHours() - 12 : d.getHours()}:${d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes()} ${d.getHours() > 12 ? "pm" : "am"}`);
+
     }
+    // console.log($("#sumData tbody").find(".champPics")[0]);
+    
+    for (let a = 0; a < champList.length; a++) {
+        const champion = champList[a];
+        let images = $(`<img alt="${champion}" width="30px" height="30px" />`).attr("src",`assets/img/champion/${champion}.png`);
+        if(champList[a] != "*"){ 
+            images.appendTo($("#sumData tbody").find(".champPics")[b]);
+            // $("#sumData tbody").find(".champPics")[b].append(`${image}`);
+        } else{
+            b++;
+            continue;
+        }
+    }
+
+    const champion = champList[1];
+    let images = $(`<img alt="${champion}" class="profile-icon"/>`).attr("src",`assets/img/champion/${champion}.png`);
+    $(".summonerInfo").prepend(images)
     $("#lottie").hide();
 }
 
 // getSum.summonerLevel
 
 $("#summonerName").html(getSum.name)
+
 
 console.log(getSum);
 console.log(gameinfo);

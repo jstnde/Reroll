@@ -40,7 +40,6 @@ $(document).ready(function () {
 
             let getSumJSON = sessionStorage.getItem("summonerJSON")
 			let parseSumJSON = JSON.parse(getSumJSON);
-			let region = $("#regionSel").val();
 			console.log(parseSumJSON.puuid);
 
             queryGames(parseSumJSON.puuid, riot_api_url);
@@ -66,10 +65,10 @@ $(document).ready(function () {
     }
 
     function redirect(){
-        window.location.href = "http://localhost:63342/summoner.html"
+        window.location.href = "/summoner.html"
     }
 
-	function getLeaderboard(riot_api_url, rank, limit = 50) {
+	function getLeaderboard(riot_api_url, rank, limit = 15) {
 		console.log("Loading leaderboard..");
 		const query_url = `/tft/league/v1/${rank}`;
 

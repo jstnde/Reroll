@@ -59,7 +59,7 @@ nav ul li a {
 }
 
 nav ul li a, nav ul li a:after {
-	transition: all .5s;
+	transition: all 0.5s;
 }
 
 nav ul li a:after {
@@ -125,7 +125,7 @@ nav .action li a:hover {
 	align-items: flex-start;
 	width: 100%;
 	height: auto;
-	padding: 0rem 10rem 0rem;
+	padding: 0 10rem 0;
 	background-color: #383b53;
 }
 
@@ -149,23 +149,6 @@ nav .action li a:hover {
 	bottom: 2rem;
 	border: 4px solid white;
 	border-radius: 100%;
-}
-
-.break {
-	line-height: 1.2rem;
-	float: left;
-	height: 10px;
-	background-color: #383b53;
-}
-
-.breakright {
-	line-height: 1.2rem;
-	display: flex;
-	float: right;
-	flex-direction: row-reverse;
-	height: 10px;
-	margin-right: 2rem;
-	background-color: #383b53;
 }
 
 /* Main */
@@ -411,7 +394,9 @@ main {
 
 footer {
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
+	align-items: center;
+	padding: 5px;
 }
 
 /*  Background Video  */
@@ -511,7 +496,7 @@ footer {
 		height: 30px;
 		margin-left: 20px;
 		cursor: pointer;
-		transition: .2s;
+		transition: 0.2s;
 	}
 
 	.menuBurger::before {
@@ -554,11 +539,11 @@ footer {
 
 	.summonerName {
 		bottom: 2rem;
-		margin-left: 0rem;
+		margin-left: 0;
 	}
 
 	.summonerMetaData {
-		padding: 0rem;
+		padding: 0;
 	}
 
 	.summonerMetaData img {
