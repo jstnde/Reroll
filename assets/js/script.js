@@ -28,7 +28,6 @@ $(document).ready(function () {
 
             let getSumJSON = sessionStorage.getItem("summonerJSON")
 			let parseSumJSON = JSON.parse(getSumJSON);
-			let region = $("#regionSel").val();
 			console.log(parseSumJSON.puuid);
 
             queryGames(parseSumJSON.puuid, riot_api_url);
