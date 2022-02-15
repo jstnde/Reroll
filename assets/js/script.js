@@ -112,22 +112,23 @@ $(document).ready(function () {
         $.ajax(settings).done(function (response) {
 			hideLottie();
             let content = "";
+			console.log(response);
+			const entries = response.entries.sort((a, b) => (a.leaguePoints < b.leaguePoints) ? 1 : ((b.leaguePoints < a.leaguePoints) ? -1 : 0))
 
-            console.log(response);
-            for (let i = 0; i < limit; i++) {
+			for (let i = 0; i < limit; i++) {
                 let percentWin = 0;
-                let element = response.entries[i];
-                let totalGames = element.wins + element.losses;
+                const element = entries[i];
+                const totalGames = element.wins + element.losses;
                 percentWin = element.wins/totalGames * 100;
-                console.log(element.summonerId);
                 content = `${content}<tr id='${element.summonerId}'>
                 <td>${i + 1}</td>\t
                 <td>${element.summonerName}</td>\t
                 <td>${element.leaguePoints}</td>\t
-                <td>${element.rank}</td>\t
+                <td>${rank.charAt(0).toUpperCase() + rank.slice(1)} ${element.rank}</td>\t
                 <td>${totalGames}</td>\t
                 <td>${percentWin.toFixed(2)}</td></tr>`
             }
+
             $("#leaderboard tbody").html(content);
 			const d = new Date();
 			$("#updateTime b").html(`${d.getDate()}/${d.getMonth()}/${d.getFullYear()} ${d.getHours() > 12 ? d.getHours() - 12 : d.getHours()}:${d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes()} ${d.getHours() > 12 ? "pm" : "am"}`);
