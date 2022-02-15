@@ -2,8 +2,8 @@
 
 "Reroll" is a school project. The product is designed to search statistics for your TFT games and view them according to their game type. Using standard web development tools like HTML, CSS, and JS along with libraries like Bootstrap and JQuery. From the league clients, a problem arises when players would want to see their games based on the TFT game type. For example: the current TFT match history client could not be sorted to the game modes like Normal, Ranked, Double-up (Beta), and Hyperroll.
 
-<!-- ![First Image](/images/first_image_website.PNG)
-![Second Image](/images/second_image_website.PNG) -->
+![First Image](/assets/img/front-page.JPG)
+![Second Image](/assets/img/front-page2.JPG)
 
 ## Design Process
 
@@ -20,7 +20,7 @@ Github Page: To access, Click [Link here](https://jstnde.github.io/Reroll/)
 - **View Leaderboard** - Let users **_view the the leaderboard_** of the game
   - Can be searched based on the **_different tiers of rank_** in the games ranking system
 - **Favourite your Summoner** - Let users **_favourite_** the players that they would want to follow and get updates when they finished a game.
-- **Filter Game Mode** - After searching for the player in the website, they can sort to what game types they would want to view
+- ~~**Filter Game Mode** - After searching for the player in the website, they can sort to what game types they would want to view~~
 
 ## Technologies Used
 
