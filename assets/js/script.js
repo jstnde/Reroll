@@ -57,7 +57,7 @@ $(document).ready(function () {
         window.location.href = "http://localhost:63342/summoner.html"
     }
 
-	function getLeaderboard(riot_api_url, rank, limit = 50) {
+	function getLeaderboard(riot_api_url, rank, limit = 15) {
 		console.log("Loading leaderboard..");
 		const query_url = `/tft/league/v1/${rank}`;
 
