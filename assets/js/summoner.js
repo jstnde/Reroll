@@ -15,7 +15,7 @@ function queryChampList(){
         const game = gameinfo[a];
         for (let i = 0; i < game.info.participants.length; i++) {
             const element = game.info.participants[i];
-            if  (element.puuid == getSum.puuid){
+            if  (element.puuid === getSum.puuid){
                 matchList++;
                 placementList.push(element.placement)
                 goldleftList.push(element.gold_left)
@@ -38,7 +38,7 @@ function queryChampPic(){
     let b = 0;
     for (let i = 0; i < matchList; i++) {
         console.log(matchList);
-        if (placementList.length != index){
+        if (placementList.length !== index){
             content = `${content}
             <tr>${getSum.character_id}</tr>
             <td>${placementList[index]}</td>
@@ -61,19 +61,18 @@ function queryChampPic(){
     for (let a = 0; a < champList.length; a++) {
         const champion = champList[a];
         let images = $(`<img alt="${champion}" width="30px" height="30px" />`).attr("src",`assets/img/champion/${champion}.png`);
-        if(champList[a] != "*"){ 
+        if(champList[a] !== "*"){
             images.appendTo($("#sumData tbody").find(".champPics")[b]);
             // $("#sumData tbody").find(".champPics")[b].append(`${image}`);
         } else{
             b++;
-            continue;
         }
     }
 
     const champion = champList[1];
     let images = $(`<img alt="${champion}" class="profile-icon"/>`).attr("src",`assets/img/champion/${champion}.png`);
-    $(".summonerInfo").prepend(images)
-    $("#lottie").hide();
+    $(".summonerInfo").prepend(images);
+	$(".lottie").hide();
 }
 
 // getSum.summonerLevel
