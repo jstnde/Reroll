@@ -7,7 +7,7 @@ $(document).ready(function () {
 		loginBtn.attr("href", "profile.html");
 	}
 	else {
-		loginBtn.html("login");
+		loginBtn.html("Login");
 	}
 
 	$("#region-select").html($(".region-option.active").html());
@@ -25,8 +25,8 @@ $(document).ready(function () {
         let query_url = '/tft/summoner/v1/summoners/by-name/'
 
 		const settings = {
-			'cache': false,
-			'contentType': "application/json",
+			"cache": false,
+			"contentType": "application/json",
 			"async": true,
 			"crossDomain": true,
 			"url": riot_api_url + query_url + `${sumName}?` + reroll,
@@ -74,8 +74,8 @@ $(document).ready(function () {
 		const query_url = `/tft/league/v1/${rank}`;
 
         const settings = {
-            'cache': false,
-            'contentType': "application/json",
+            "cache": false,
+            "contentType": "application/json",
             "async": true,
             "crossDomain": true,
             "url": riot_api_url + query_url + "?" + reroll,
@@ -99,7 +99,7 @@ $(document).ready(function () {
                 <td>${element.leaguePoints}</td>\t
                 <td>${element.rank}</td>\t
                 <td>${totalGames}</td>\t
-                <td>${percentWin.toFixed(2)}</td>`
+                <td>${percentWin.toFixed(2)}</td></tr>`
             }
             $("#leaderboard tbody").html(content);
 			const d = new Date();
@@ -176,8 +176,8 @@ $(document).ready(function () {
         }
 
 		const settings = {
-			'cache': false,
-			'contentType': "application/json",
+			"cache": false,
+			"contentType": "application/json",
 			"async": true,
 			"crossDomain": true,
 			"url": riot_api_url + query_url + reroll,
@@ -260,8 +260,8 @@ $(document).ready(function () {
         }
 
         const settings = {
-            'cache': false,
-            'contentType': "application/json",
+            "cache": false,
+            "contentType": "application/json",
             "async": true,
             "crossDomain": true,
             "url": riot_api_url + query_url + reroll,
@@ -294,7 +294,7 @@ $(document).ready(function () {
         return $.ajax(settings);
     }
 
-    async function signIn(userId = null) {
+    async function signIn(cuser = null) {
         const username = $("#login-username");
         const password = $("#login-password");
         const error = $(".signInForm form .error-msg");
@@ -304,25 +304,32 @@ $(document).ready(function () {
         error.css("visibility", "hidden");
 
         let success = false;
-        if (userId === null) {
+        if (cuser === null) {
             const response = await getUsers();
             console.log(response);
 
             for (const user of response) {
                 if (user.Username === username.val() && user.Password === password.val()) {
-                    sessionStorage.setItem("login", JSON.stringify({"id": user._id, "username": user.Username}));
+                    sessionStorage.setItem("login", JSON.stringify({
+						"id": user._id,
+						"username": user.Username,
+						"favourites": user.Favourites
+					}));
                     success = true;
                     break;
                 }
             }
         }
         else {
-            sessionStorage.setItem("login", JSON.stringify({"id": userId._id, "username": userId.Username}));
+            sessionStorage.setItem("login", JSON.stringify({
+				"id": cuser._id,
+				"username": cuser.Username,
+				"favourites": cuser.Favourites
+			}));
             success = true;
         }
 
         if (success) {
-            alert("Sign In Successful!");
             location.href = "index.html";
         }
         else {
@@ -392,7 +399,7 @@ $(document).ready(function () {
     }
 
     // on hide modal -> submit
-    $('#filterModal').on('hidden.bs.modal', function () {
+    $("#filterModal").on("hidden.bs.modal", function () {
         $(".searchLB").submit();
     });
 
@@ -450,4 +457,71 @@ $(document).ready(function () {
         e.preventDefault();
         await signIn(await signUp());
     });
+
+	$("#favourites").ready(async function() {
+		if (location.href.includes("profile.html")) {
+			if (user !== null) {
+				let favourites = "";
+				let content = "";
+				let responses = [];
+
+				const settings = {
+					"async": true,
+					"crossDomain": true,
+					"url": `https://reroll-601d.restdb.io/rest/reroll-users/${JSON.parse(user).id}`,
+					"method": "GET",
+					"headers": {
+						"content-type": "application/json",
+						"x-apikey": db,
+						"cache-control": "no-cache"
+					},
+					"beforeSend": showLottie()
+				}
+
+				await $.ajax(settings).done(function (response) {
+					favourites = response.Favourites;
+					hideLottie();
+				});
+
+				favourites = favourites.split(",");
+				for (const favourite of favourites) {
+					const f = favourite.split('.');
+					const settings = {
+						"cache": false,
+						"contentType": "application/json",
+						"async": true,
+						"crossDomain": true,
+						"url": `https://${f[0]}.api.riotgames.com/tft/league/v1/entries/by-summoner/${f[1]}?${reroll}`,
+						"method": "GET"
+					};
+
+					await $.ajax(settings).done(function (response) {
+						responses.push(response[0]);
+					});
+				}
+
+				responses = responses.sort((a, b) => (a.leaguePoints < b.leaguePoints) ? 1 : ((b.leaguePoints < a.leaguePoints) ? -1 : 0))
+				let count = 0;
+				for (const r of responses) {
+					console.log(r.summonerId);
+					let percentWin = 0;
+					let totalGames = r.wins + r.losses;
+					percentWin = r.wins / totalGames * 100;
+					content = `${content}<tr id='${r.summonerId}'>
+						<td>${count + 1}</td>\t
+						<td>${r.summonerName}</td>\t
+						<td>${r.leaguePoints}</td>\t
+						<td>${r.tier} ${r.rank}</td>\t
+						<td>${totalGames}</td>\t
+						<td>${percentWin.toFixed(2)}</td></tr>`
+					count++;
+				}
+
+				$("#favourites tbody").html(content);
+			}
+			else {
+				location.href = "index.html";
+			}
+		}
+	});
 });
