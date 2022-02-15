@@ -53,7 +53,7 @@ $(document).ready(function () {
     }
 
     function redirect(){
-        window.location.href = "http://localhost:63342/summoner.html"
+        window.location.href = "/summoner.html"
     }
 
 	function getLeaderboard(riot_api_url, rank, limit = 15) {
