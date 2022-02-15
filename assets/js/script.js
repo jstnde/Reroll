@@ -524,4 +524,9 @@ $(document).ready(function () {
 			}
 		}
 	});
+
+	$(".signOutBtn").click(function() {
+		sessionStorage.removeItem("login");
+		location.href = "index.html";
+	});
 });
