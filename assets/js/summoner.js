@@ -69,12 +69,17 @@ function queryChampPic(){
             continue;
         }
     }
+
+    const champion = champList[1];
+    let images = $(`<img alt="${champion}" class="profile-icon"/>`).attr("src",`assets/img/champion/${champion}.png`);
+    $(".summonerInfo").prepend(images)
     $("#lottie").hide();
 }
 
 // getSum.summonerLevel
 
 $("#summonerName").html(getSum.name)
+
 
 console.log(getSum);
 console.log(gameinfo);
