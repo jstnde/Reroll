@@ -3,16 +3,16 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	color: #F8F9FA;
+	color: #f8f9fa;
 }
 
 a, a:hover {
 	text-decoration: none;
-	color: #F8F9FA;
+	color: #f8f9fa;
 }
 
 body {
-	background-color: #2E4052;
+	background-color: #2e4052;
 }
 
 /* Header*/
@@ -30,7 +30,7 @@ header .logo {
 	font-weight: 700;
 	position: relative;
 	padding-right: 30px;
-	color: #F8F9FA;
+	color: #f8f9fa;
 }
 
 nav {
@@ -72,7 +72,7 @@ nav ul li a:after {
 	margin: auto;
 	content: "";
 	color: transparent;
-	background: #F8F9FA;
+	background: #f8f9fa;
 }
 
 nav .navigation li a:hover:after {
@@ -183,7 +183,7 @@ main {
 	display: flex;
 	flex-direction: row;
 	border-radius: 10px;
-	background-color: #FFF;
+	background-color: #fff;
 }
 
 .searchSum {
@@ -230,11 +230,11 @@ main {
 
 .dropdown-menu {
 	min-width: unset;
-	background-color: #343A40;
+	background-color: #343a40;
 }
 
 .dropdown-item {
-	color: #F8F9FA;
+	color: #f8f9fa;
 }
 
 .form-control {
@@ -255,22 +255,22 @@ main {
 .search-btn {
 	margin-left: 1px;
 	border-radius: 0 5px 5px 0;
-	background-color: #FFF;
+	background-color: #fff;
 }
 
 .searchLB .search-btn {
-	border: 1px solid #6C757D;
+	border: 1px solid #6c757d;
 }
 
-.input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
+.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
 	border-radius: 0 5px 5px 0;
 }
 
 .fa-search {
-	color: #6C757D;
+	color: #6c757d;
 }
 
-.table {
+.table-container {
 	min-height: 75vh;
 }
 
@@ -381,9 +381,9 @@ main {
 	width: 100%;
 	margin-bottom: 20px;
 	padding: 10px;
+	color: #000;
 	border: 1px solid #333;
 	outline: none;
-	color: #000;
 }
 
 .form-container .form form input.error {
@@ -399,14 +399,13 @@ main {
 }
 
 .form-container .form form div {
-	margin-bottom: 10px;
 	visibility: hidden;
+	margin-bottom: 10px;
 }
 
 .form-container .form form div small {
 	color: #d00;
 }
-
 
 /* Footer */
 
@@ -424,6 +423,29 @@ footer {
 	left: 0;
 	width: 100%;
 	height: auto;
+}
+
+/* Lottie */
+
+.lottie {
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	display: none;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	opacity: 0.8;
+	background-color: #fff;
+}
+
+.lottie lottie-player {
+	position: absolute;
+	z-index: 100;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 /* Media Queries */
@@ -476,7 +498,7 @@ footer {
 		justify-content: center;
 		width: 100%;
 		height: 100%;
-		background-color: #2E4052;
+		background-color: #2e4052;
 	}
 
 	.menuBurger {
