@@ -4,12 +4,12 @@ $(document).ready(function () {
 	const user = sessionStorage.getItem("login");
 	const loginBtn = $("nav .action li a");
 	let matchList = 0;
-    let champList = new Array();
-    let content = new String();
-    let placementList = new Array();
-    let goldleftList = new Array();
-    let playerelimList = new Array();
-    let damagetoplayersList = new Array();
+    let champList = [];
+    let content = String();
+    let placementList = [];
+    let goldleftList = [];
+    let playerelimList = [];
+    let damagetoplayersList = [];
     let gameinfo = JSON.parse(sessionStorage.getItem("gameInfo"));
     let getSum = JSON.parse(sessionStorage.getItem("summonerJSON"));
 
@@ -359,7 +359,7 @@ $(document).ready(function () {
         for (let a = 0; a < champList.length; a++) {
             const champion = champList[a];
             let images = $(`<img alt="${champion}" width="30px" height="30px" />`).attr("src",`assets/img/champion/${champion}.png`);
-            if(b == matchList){
+            if(b === matchList){
                 break;
             } else{
                 if(champList[a] !== "*"){
