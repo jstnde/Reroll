@@ -1,6 +1,15 @@
 $(document).ready(function () {
+	const reroll = config.REROLL_API;
+	const db = config.DB_API;
+	let matchList = [];
 	const user = sessionStorage.getItem("login");
-	const loginBtn = $("nav .action li a");
+	const loginBtn = $("nav .action li a");;
+
+	hideLottie();
+	$("#region-select").html($(".region-option.active").html());
+	$("#rank-select").html($(".rank-option.active").html());
+    $("#error-username").hide();
+
 
 	if (user !== null) {
 		loginBtn.html(JSON.parse(user).username);
@@ -10,15 +19,20 @@ $(document).ready(function () {
 		loginBtn.html("Login");
 	}
 
-	$("#region-select").html($(".region-option.active").html());
-	$("#rank-select").html($(".rank-option.active").html());
+	if (location.href.includes("leaderboard.html")) {
+		const region = $(".region-option.active").attr("data-code");
+		const riot_api_url = `https://${region}.api.riotgames.com`;
+		const rank = $(".rank-option.active").attr("data-rank");
+		getLeaderboard(riot_api_url, rank);
+	}
 
-    const reroll = config.REROLL_API;
-    const db = config.DB_API;
-    let matchList = [];
+	function showLottie() {
+		$(".lottie").show();
+	}
 
-    $("#error-username").hide();
-    $("#lottie").hide();
+	function hideLottie() {
+		$(".lottie").hide();
+	}
 
     function getSummoner(sumName, riot_api_url) {
 
@@ -31,9 +45,11 @@ $(document).ready(function () {
 			"crossDomain": true,
 			"url": riot_api_url + query_url + `${sumName}?` + reroll,
 			"method": "GET",
+			"beforeSend": showLottie()
 		};
 
 		$.ajax(settings).done(function(response) {
+			hideLottie();
             const sumJSON = JSON.stringify(response);
 
             sessionStorage.setItem("summonerJSON", sumJSON);
@@ -65,7 +81,7 @@ $(document).ready(function () {
     }
 
     function redirect(){
-        window.location.href = "/summoner.html"
+        location.href = "summoner.html";
     }
 
 	function getLeaderboard(riot_api_url, rank, limit = 15) {
@@ -79,10 +95,11 @@ $(document).ready(function () {
             "crossDomain": true,
             "url": riot_api_url + query_url + "?" + reroll,
             "method": "GET",
+			"beforeSend": showLottie()
         }
 
         $.ajax(settings).done(function (response) {
-
+			hideLottie();
             let content = "";
 
             console.log(response);
@@ -181,9 +198,11 @@ $(document).ready(function () {
 			"crossDomain": true,
 			"url": riot_api_url + query_url + reroll,
 			"method": "GET",
+			"beforeSend": showLottie()
 		};
 
 		$.ajax(settings).done(function (response) {
+			hideLottie();
             // query each match ID
             matchList = response;
             console.log(matchList);
@@ -265,9 +284,11 @@ $(document).ready(function () {
             "crossDomain": true,
             "url": riot_api_url + query_url + reroll,
             "method": "GET",
+			"beforeSend": showLottie()
         }
 
         $.ajax(settings).done(function (response) {
+			hideLottie();
             // query each match info
             console.log(response);
             let storedProductList = JSON.parse(sessionStorage.getItem('gameInfo')) || [];
@@ -287,13 +308,17 @@ $(document).ready(function () {
                 "content-type": "application/json",
                 "x-apikey": db,
                 "cache-control": "no-cache"
-            }
+            },
+			"beforeSend": showLottie()
         }
 
-        return $.ajax(settings);
+        return $.ajax(settings).done(function() {
+			hideLottie();
+		});
     }
 
     async function signIn(cuser = null) {
+		showLottie();
         const username = $("#login-username");
         const password = $("#login-password");
         const error = $(".signInForm form .error-msg");
@@ -328,6 +353,7 @@ $(document).ready(function () {
             success = true;
         }
 
+		hideLottie();
         if (success) {
             location.href = "index.html";
         }
@@ -389,11 +415,13 @@ $(document).ready(function () {
                 "cache-control": "no-cache"
             },
             "processData": false,
-            "data": JSON.stringify(jsondata)
+            "data": JSON.stringify(jsondata),
+			"beforeSend": showLottie()
         };
 
         return $.ajax(settings).done(function (response) {
             console.log(response);
+			hideLottie();
         });
     }
 
@@ -419,7 +447,6 @@ $(document).ready(function () {
         let riot_api_url = `https://${region}.api.riotgames.com`;
 
         getSummoner(sumName, riot_api_url);
-        $("#lottie").show();
     });
 
     $(".menuBurger").click(function() {
@@ -491,11 +518,13 @@ $(document).ready(function () {
 						"async": true,
 						"crossDomain": true,
 						"url": `https://${f[0]}.api.riotgames.com/tft/league/v1/entries/by-summoner/${f[1]}?${reroll}`,
-						"method": "GET"
+						"method": "GET",
+						"beforeSend": showLottie()
 					};
 
 					await $.ajax(settings).done(function (response) {
 						responses.push(response[0]);
+						hideLottie();
 					});
 				}
 
