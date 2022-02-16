@@ -5,62 +5,119 @@
 	<title>Reroll</title>
 	<link rel="stylesheet" href="assets/css/normalize.css">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-	<header>
-		<a class="logo" href="index.html">Reroll;</a>
-		<nav>
-			<ul class="navigation">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="leaderboard.html">Leaderboard</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-			<ul class="action">
-				<li><a href="login.html">Login</a></li>
-				<div class="menuBurger"></div>
-			</ul>
-		</nav>
-	</header>
-	<main>
-        <div class="column">
-            <div class="cover">
-                <video class="video-bg" autoplay muted loop>
-                    <source src="assets/img/bg-video.webm" type="video/webm">
-                </video>
-                <div class="summonerInfo">
-                    <span id="summonerName" class="summonerName"></span>
-                    <button class="likeButton" id="favourite"><img src="https://img.icons8.com/windows/32/000000/filled-like.png"/>Favourite</button>
-                </div>
-            </div>
-            <div class="summonerMetaData">
-                <p>Last Update: <span id="updateTime"></span></p>
-                <table class="table table-striped table-dark table-hover" id="sumData">
-                    <thead>
-                    <tr>
-                        <th scope="col">Placement</th>
-                        <th scope="col">Champions</th>
-                        <th scope="col">Gold left</th>
-                        <th scope="col">Players Eliminated</th>
-                        <th scope="col">Damage to Players</th>
-                    </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-        </div>
-	</main>
-	<footer>
-		<a href="https://github.com/jstnde/Reroll" target="_blank"><img src="assets/img/github.png" alt="" srcset="" width="50px" height="50px"></a>
-		<span>Reroll Version 1.0</span>
-	</footer>
-	<div class="lottie">
-		<lottie-player id="lottie" src="https://assets4.lottiefiles.com/private_files/lf30_pidikbny.json" background="transparent"  speed="0.3"  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+<header>
+	<a class="logo" href="index.html">Reroll;</a>
+	<nav>
+		<ul class="navigation">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="leaderboard.html">Leaderboard</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+		<ul class="action">
+			<li><a href="login.html">Login</a></li>
+			<div class="menuBurger"></div>
+		</ul>
+	</nav>
+</header>
+<main>
+	<section class="col-10 table-responsive">
+		<div class="d-flex justify-content-between summoner-header">
+			<div class="d-flex flex-md-row flex-column">
+				<div class="summonerInfo">
+					<div class="summoner-name">
+						<span id="summoner-name_text"></span>
+					</div>
+					<div class="like-btn">
+						<span class="fa fa-heart-o"></span>
+						<div class="ring"></div>
+						<div class="ring2"></div>
+						<p class="info">Added to favourites!</p>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex align-items-end mb-1 justify-content-end" id="updateTime">
+				<p class="m-0">Last Update: </p><b></b>
+			</div>
+		</div>
+		<div class="table-container summonerMetaData">
+			<table class="table table-striped table-dark table-hover" id="sumData">
+				<thead>
+				<tr>
+					<th scope="col">Placement</th>
+					<th scope="col">Champions</th>
+					<th scope="col">Gold left</th>
+					<th scope="col">Players Eliminated</th>
+					<th scope="col">Damage to Players</th>
+				</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</section>
+	<div class="modal fade" id="filterModal" role="dialog" aria-hidden="true" aria-labelledby="filterModalTitle"
+		 tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<form class="input-group searchbar searchLB">
+						<div class="dropdown dropdown-region">
+							<button class="btn btn-secondary dropdown-toggle" id="region-select"
+									data-bs-toggle="dropdown" type="button"></button>
+							<div class="dropdown-menu">
+								<button class="dropdown-item region-option" data-code="BR1" type="button">BR</button>
+								<button class="dropdown-item region-option" data-code="EUN1" type="button">EUN</button>
+								<button class="dropdown-item region-option" data-code="EUW1" type="button">EUW</button>
+								<button class="dropdown-item region-option" data-code="JP1" type="button">JP</button>
+								<button class="dropdown-item region-option" data-code="KR" type="button">KR</button>
+								<button class="dropdown-item region-option" data-code="LA1" type="button">LAN</button>
+								<button class="dropdown-item region-option" data-code="LA2" type="button">LAS</button>
+								<button class="dropdown-item region-option active" data-code="NA1" type="button">NA
+								</button>
+								<button class="dropdown-item region-option" data-code="OC1" type="button">OCE</button>
+								<button class="dropdown-item region-option" data-code="TR1" type="button">TR</button>
+								<button class="dropdown-item region-option" data-code="RU" type="button">RU</button>
+							</div>
+						</div>
+						<div class="dropdown dropdown-rank">
+							<button class="btn btn-secondary dropdown-toggle" id="rank-select" data-bs-toggle="dropdown"
+									type="button"></button>
+							<div class="dropdown-menu">
+								<button class="dropdown-item rank-option" data-rank="challenger" type="button">
+									Challenger
+								</button>
+								<button class="dropdown-item rank-option active" data-rank="grandmaster" type="button">
+									Grandmaster
+								</button>
+								<button class="dropdown-item rank-option" data-rank="master" type="button">Master
+								</button>
+							</div>
+						</div>
+						<button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
-	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-	<script src="assets/js/jquery-3.6.0.min.js"></script>
-	<script src="assets/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/js/config.js"></script>
-	<script src="assets/js/script.js"></script>
+</main>
+<footer>
+	<a href="https://github.com/jstnde/Reroll" target="_blank">
+		<img src="assets/img/github.png" alt="" srcset="" width="50px" height="50px">
+	</a>
+	<span>Reroll Version 1.0</span>
+</footer>
+<div class="lottie">
+	<lottie-player id="lottie" src="https://assets4.lottiefiles.com/private_files/lf30_pidikbny.json"
+				   background="transparent" speed="0.3" style="width: 300px; height: 300px;" loop
+				   autoplay></lottie-player>
+</div>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 </html>
