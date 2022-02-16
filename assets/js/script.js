@@ -152,22 +152,34 @@ $(document).ready(function () {
             let content = "";
 
             console.log(response);
-            for (let i = 0; i < limit; i++) {
-                let percentWin = 0;
-                let element = response.entries[i];
-                let totalGames = element.wins + element.losses;
-                percentWin = element.wins/totalGames * 100;
-                console.log(element.summonerId);
-                content = `${content}<tr class="search" data-id='${element.summonerId}' id='${element.summonerId}'>
-                <td>${i + 1}</td>\t
-                <td>${element.summonerName}</td>\t
-                <td>${element.leaguePoints}</td>\t
-                <td>${element.rank}</td>\
-                <td>${totalGames}</td>\t
-                <td>${percentWin.toFixed(2)}</td>
-                </tr>`
+            if (response.entries.length < 1){
+                    content =  `${content} <tr><th>There is no summoners in this rank</th></tr>`
+                } else {
+                    for (let i = 0; i < limit; i++) {
+                        let percentWin = 0;
+                        let element = response.entries[i];
+                        let totalGames = element.wins + element.losses;
+                    percentWin = element.wins/totalGames * 100;
+                    console.log(element.summonerId);
+                    content = `${content}<tr class="search" data-id='${element.summonerId}' id='${element.summonerId}'>
+                    <td>${i + 1}</td>\t
+                    <td>${element.summonerName}</td>\t
+                    <td>${element.leaguePoints}</td>\t
+                    <td>${element.rank}</td>\
+                    <td>${totalGames}</td>\t
+                    <td>${percentWin.toFixed(2)}</td>
+                    </tr>`
+                }
             }
-            $("#leaderboard tbody").html(content);
+            if (response.entries.length > 0){
+                $("#leaderboard tbody").show();
+                $("#leaderboard tbody").html(content);
+                $("#error-msg").hide();
+            } else {
+                $("#leaderboard tbody").hide();
+                $("#error-msg").html(content);
+                $("#error-msg").show();
+            }
 			const d = new Date();
 			$("#updateTime b").html(`${d.getDate()}/${d.getMonth()}/${d.getFullYear()} ${d.getHours() > 12 ? d.getHours() - 12 : d.getHours()}:${d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes()} ${d.getHours() > 12 ? "pm" : "am"}`);
 		})
