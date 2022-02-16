@@ -67,13 +67,6 @@ $(document).ready(function () {
 		$.ajax(settings).done(async function (response) {
 			$("#summoner-name_text").html(`${sumName}<small>#${region}</small>`);
 			queryGames(response.puuid, region);
-
-			for (let i = 0; i < matchList.length; i++) {
-				let element = matchList[i];
-				console.log(element);
-				await eachGameInfo(element);
-				hideLottie();
-			}
 		});
 	}
 
@@ -179,7 +172,6 @@ $(document).ready(function () {
 				responses.push(await eachGameInfo(element, riot_api_url));
 			}
 
-			let count = 0;
 			let content = "";
 			let champion = null;
 
@@ -225,9 +217,7 @@ $(document).ready(function () {
 			"beforeSend": showLottie()
 		}
 
-		return $.ajax(settings).done(function (response) {
-			console.log(response);
-		});
+		return $.ajax(settings);
 	}
 
 	async function getUsers() {
