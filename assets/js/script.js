@@ -45,6 +45,47 @@ $(document).ready(function () {
 		$(".lottie").hide();
 	}
 
+    function getSumPuuid(puuid, riot_api_url){
+        let query_url = '/tft/summoner/v1/summoners/'
+
+		const settings = {
+			"cache": false,
+			"contentType": "application/json",
+			"async": true,
+			"crossDomain": true,
+			"url": riot_api_url + query_url + `${puuid}?` + reroll,
+			"method": "GET",
+			"beforeSend": showLottie()
+		};
+
+		$.ajax(settings).done(function(response) {
+			hideLottie();
+            const sumJSON = JSON.stringify(response);
+
+            sessionStorage.setItem("summonerJSON", sumJSON);
+
+            let getSumJSON = sessionStorage.getItem("summonerJSON")
+			let parseSumJSON = JSON.parse(getSumJSON);
+			console.log(parseSumJSON.puuid);
+
+            queryGames(parseSumJSON.puuid, riot_api_url);
+
+            for (let i = 0; i < matchList.length; i++) {
+                let element = matchList[i];
+                console.log(element);
+                eachGameInfo(element);
+            }
+
+            setTimeout(function() {redirect()}, 5000);
+
+        });
+
+        $.ajax(settings).fail(function() {
+            $("#error-username").show().fadeOut(5000);
+            $("#lottie").hide();
+        });
+    }
+
     function getSummoner(sumName, riot_api_url) {
 
         let query_url = '/tft/summoner/v1/summoners/by-name/'
@@ -76,9 +117,6 @@ $(document).ready(function () {
                 console.log(element);
                 eachGameInfo(element);
             }
-
-            let gameinfo = JSON.parse(sessionStorage.getItem("gameInfo"));
-            console.log(gameinfo);
 
             setTimeout(function() {redirect()}, 5000);
 
@@ -120,13 +158,14 @@ $(document).ready(function () {
                 let totalGames = element.wins + element.losses;
                 percentWin = element.wins/totalGames * 100;
                 console.log(element.summonerId);
-                content = `${content}<tr id='${element.summonerId}'>
+                content = `${content}<tr class="search" data-id='${element.summonerId}' id='${element.summonerId}'>
                 <td>${i + 1}</td>\t
                 <td>${element.summonerName}</td>\t
                 <td>${element.leaguePoints}</td>\t
-                <td>${element.rank}</td>\t
+                <td>${element.rank}</td>\
                 <td>${totalGames}</td>\t
-                <td>${percentWin.toFixed(2)}</td></tr>`
+                <td>${percentWin.toFixed(2)}</td>
+                </tr>`
             }
             $("#leaderboard tbody").html(content);
 			const d = new Date();
@@ -213,7 +252,6 @@ $(document).ready(function () {
 		};
 
 		$.ajax(settings).done(function (response) {
-			hideLottie();
             // query each match ID
             matchList = response;
             console.log(matchList);
@@ -299,7 +337,6 @@ $(document).ready(function () {
         }
 
         $.ajax(settings).done(function (response) {
-			hideLottie();
             // query each match info
             console.log(response);
             let storedProductList = JSON.parse(sessionStorage.getItem('gameInfo')) || [];
@@ -635,4 +672,13 @@ $(document).ready(function () {
 		sessionStorage.removeItem("login");
 		location.href = "index.html";
 	});
+
+    $("#leaderboard tbody").on("click", ".search", function(e) {
+        e.preventDefault();
+        const puuid = $(this).data("id");
+		let region = $(".region-option.active").attr("data-code");
+        let riot_api_url = `https://${region}.api.riotgames.com`;
+        getSumPuuid(puuid, riot_api_url)
+    })
+
 });
