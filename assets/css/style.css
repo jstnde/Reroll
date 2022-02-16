@@ -483,10 +483,35 @@ main {
 
 footer {
 	display: flex;
+	justify-content: center;
 	align-items: center;
-	justify-content: space-evenly;
 	padding: 5px;
 }
+
+footer small {
+	font-weight: 700;
+	margin-right: 20px;
+}
+
+footer span {
+	font-size: 1.2em;
+}
+
+.footer-items {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.footer-items_item {
+	display: inline-block;
+	padding: 10px;
+	margin: 0 10px;
+	fill: #fff;
+}
+
 
 /*  Background Video  */
 
