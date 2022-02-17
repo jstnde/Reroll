@@ -11,12 +11,16 @@ Wireframe: To access, Click [Link here](https://xd.adobe.com/view/4210eedb-dbe8-
 
 Document Planning: To access, Click [Link here](https://docs.google.com/document/d/17AAHQfqsdy0DkRjxTKTVVk0ij6p6-8CILsDvGjk0MGk/edit?usp=sharing)
 
-Video Walkthrough: To access, Click [Link here]()
+Video Walkthrough: To access, Click [Link here](https://drive.google.com/file/d/1SiZqVCwot084XL1SQuuWjK2SktEFxnCL/view?usp=sharing)
 
 Github Page: To access, Click [Link here](https://jstnde.github.io/Reroll/)
 
 ## Features
 
+- **Search Summoner** - Allow users to search for their **_own profile_** or their **_favourite_** players to see how they are doing
+  - Can search with different **_regions_** as well
+- **Login & Register** - Let users to sign up to the website to allow **_Favourite your Summoner_** functionality
+  - Allows for **_quick search_** on their favourite players
 - **View Leaderboard** - Let users **_view the the leaderboard_** of the game
   - Can be searched based on the **_different tiers of rank_** in the games ranking system
 - **Favourite your Summoner** - Let users **_favourite_** the players that they would want to follow and get updates when they finished a game.
@@ -43,7 +47,8 @@ User Testing Plan: To access, Click [Link Here](https://docs.google.com/spreadsh
 
 ## Credits
 
-- To be filled soon
+- Ngee Ann Polytechnic
+- Mui Hoon ONG-QUEK (NP) - Lecturers
 
 ### Content
 
